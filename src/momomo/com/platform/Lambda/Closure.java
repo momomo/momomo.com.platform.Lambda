@@ -38,7 +38,7 @@
 package momomo.com.platform.Lambda;
 
 /**
- * @author Mo. Joseph
+ * @author Joseph S.
  *
  * In Intellij a more suitable name is 'Closure' because it allows for better code completion.
  *

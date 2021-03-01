@@ -1,6 +1,5 @@
-# momomo.com.Lambda
+# momomo.com.plaform.Lambda
 Intuitive generics based functional interfaces | Lambda | Closure skeletons with support for { void | returns | multi params } & exceptions
-
 
 
 

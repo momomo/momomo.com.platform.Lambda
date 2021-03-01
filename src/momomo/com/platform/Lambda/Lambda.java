@@ -40,7 +40,7 @@ package momomo.com.platform.Lambda;
 import java.util.function.*;
 
 /**
- * @author Mo. Joseph
+ * @author Joseph S.
  *
  * @since 1.8
  */
@@ -2447,7 +2447,7 @@ public abstract class Lambda {
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
         /**
-         * @author Mo. Joseph
+         * @author Joseph S.
          *
          * @since 1.8
          */
