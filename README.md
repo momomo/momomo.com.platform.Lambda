@@ -23,11 +23,11 @@ Documentation through comments are provided within the class itself.
 
 * [Lists.java](src/momomo/com/platform/Lambda/examples/Lists.java)
 
-    [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.jpg?&v=2)](src/momomo/com/platform/Lambda/examples/Lists.java)
+    [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.jpg?&v=3)](src/momomo/com/platform/Lambda/examples/Lists.java)
 
 * [IO.java](src/momomo/com/platform/Lambda/examples/IO.java)
 
-  [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.jpg?raw=true&v=2)](src/momomo/com/platform/Lambda/examples/IO.java)
+  [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.jpg?raw=true&v=3)](src/momomo/com/platform/Lambda/examples/IO.java)
 
   
 
