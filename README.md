@@ -16,27 +16,6 @@ Also, going from `Lambda.R2E` `lambda` to a `Lambda.V2E`, is as easy as calling 
 
 A great number of libraries has been built on top of this intuitive concept.    
 
-#### [Lambda.java](src/momomo/com/platform/Lambda/Lambda.java)
-Documentation through comments are provided within the class itself. 
-
-#### Examples:  
-
-* [Lists.java](src/momomo/com/platform/Lambda/examples/Lists.java)
-
-    [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
-
-* [IO.java](src/momomo/com/platform/Lambda/examples/IO.java)
-
-  [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
-
-  
-
-#### Other
-Note that whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
-
-#### Contribute
-Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and ideas on things to improve.    
-
 #### Maven dependency available on maven central (search.maven.org)
 ##### Dependency   
 ```
@@ -53,3 +32,22 @@ Send an email to `opensource{at}momomo.com` if you would like to contribute in a
     <url>http://repo1.maven.org/maven2</url>
 </repository>
 ```
+
+#### [Lambda.java](src/momomo/com/platform/Lambda/Lambda.java)
+Documentation through comments are provided within the class itself. 
+
+#### Examples:  
+
+* [Lists.java](src/momomo/com/platform/Lambda/examples/Lists.java)
+
+    [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
+
+* [IO.java](src/momomo/com/platform/Lambda/examples/IO.java)
+
+  [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
+
+#### Other
+Note that whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
+
+#### Contribute
+Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and ideas on things to improve.    
