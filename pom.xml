@@ -26,7 +26,7 @@
     
     <groupId>com.momomo</groupId>
     <artifactId>mmm.platform.Lambda</artifactId>
-    <version>2021.03.04.16.14.31</version>
+    <version>2021.03.04.18.29.19</version>
     
     <packaging>jar</packaging>
     
@@ -161,6 +161,8 @@
             
             
     
+            
+    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -188,8 +190,6 @@
                 </executions>
             </plugin>
     
-            
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -247,35 +247,28 @@
 
         
             <profile>
-                <id>mmm_pom_sonatype_repository</id>
+                <id>mmm_pom_profile_sonatype_repository</id>
         
                 <distributionManagement>
                     <repository>
-                        <id>mmm_pom_sonatype_repository</id>
-                        <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-    
-                        <url>https://s01.oss.sonatype.org/</url>
+                        <id>mmm_pom_profile_sonatype_repository</id>
+                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                     </repository>
             
                     <snapshotRepository>
-                        <id>mmm_pom_sonatype_repository_snapshots</id>
+                        <id>mmm_pom_profile_sonatype_repository_snapshots</id>
                         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     </snapshotRepository>
                 </distributionManagement>
                 
+                <properties>
+                    <gpg.passphraseServerId>opensource@momomo.com</gpg.passphraseServerId>
+                    <gpg.defaultKeyring>false</gpg.defaultKeyring>
+                </properties>
+                
                 <build>
                     <plugins>
-                        <!--<plugin>
-                            <groupId>org.sonatype.plugins</groupId>
-                            <artifactId>nexus-staging-maven-plugin</artifactId>
-                            <version>1.6.7</version>
-                            <extensions>true</extensions>
-                            <configuration>
-                                <serverId>mmm_pom_sonatype_repository</serverId>
-                                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                                <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                            </configuration>
-                        </plugin>-->
+                        
                         
                         
                             <plugin>
@@ -293,6 +286,52 @@
                                 </executions>
                             </plugin>
                         
+    
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-gpg-plugin</artifactId>
+                            <version>1.6</version>
+                            <executions>
+                                <execution>
+                                    <id>sign-artifacts</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>sign</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+    
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>3.2.0</version>
+                            <executions>
+                                <execution>
+                                    <id>attach-javadocs</id>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+    
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-antrun-plugin</artifactId>
+                            <version>1.8</version>
+                            <executions><execution>
+                                <id>mmm-antrun-10</id>
+                                <phase>validate</phase>
+                                <goals><goal>run</goal></goals>
+                                <configuration>
+                                    <target>
+                                        <delete file="resources/rebel.xml" />
+                                    </target>
+                                </configuration>
+                            </execution>
+                            </executions>
+                        </plugin>
                     </plugins>
                 </build>
                 
@@ -348,5 +387,27 @@
     
     
     
+    <!-- Contact for developers on project -->
+    <developers>
+        <developer>
+            <name>momomo</name>
+            <email>opensource@momomo.com</email>
+            <organization>Momomo LTD</organization>
+            <organizationUrl>https://coming.soon.momomo.com</organizationUrl>
+        </developer>
+    </developers>
+    
+    
+        <description>Provides intuitive generics based functional interfaces</description>
+    
+    
+    
+        <url>https://github.com/momomo/momomo.com.platform.Lambda</url>
+    
+    
+    
+    
+
+
 </project>
 
