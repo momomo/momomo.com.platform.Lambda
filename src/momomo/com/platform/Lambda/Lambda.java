@@ -2,7 +2,7 @@
 //    Copyright(C) 2020, Momomo LTD.                                                                                                      //
 //    All rights reserved.                                                                                                                //
 //                                                                                                                                        //
-//    Momomo LTD Opensource License 'MoL1' (https://raw.githubusercontent.com/momomo/momomo.com.Licenses/master/MoL1)                     //
+//    Momomo LTD Opensource License 'MoL1' (https://raw.githubusercontent.com/momomo/momomo.com.Licenses/HEAD/MoL1)                       //
 //                                                                                                                                        //
 //    (1) Use of this source code, wether identical, changed or altered is allowed, for commercial and non-commercial use.                //
 //                                                                                                                                        //
@@ -45,2428 +45,2425 @@ import java.util.function.*;
 /**
  * @author Joseph S.
  *
+ * default methods with '@final' comments are to be considered final and should not be overriden.
+ *
+ * Supports up to five parameters, as well as with and
+ *
  * @since 1.8
  */
 public abstract class Lambda {
-        Lambda(){ /* should remain package local / private to avoid code completion on new */ }
-
-        /** R = R0 = Return of defined type with 0 parameters */
-        @FunctionalInterface public interface R<Returns> extends RE<Returns, RuntimeException>, Supplier<Returns> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> R1<Returns, Param1> R1(){
-                        return (param1) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary returning conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> R2<Returns, Param1, Param2> R2() {
-                        return (param1, param2) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (param1, param2, param3) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call();
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V V(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> V1<Param1> V1() {
-                        return (param1) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> V2<Param1, Param2> V2() {
-                        return (param1, param2) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> V3<Param1, Param2, Param3> V3() {
-                        return (param1, param2, param3) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call();
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default Returns get() {
-                        return call();
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** RE  = Return of defined type with 0 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface RE<Returns, E extends Throwable> {
-                Returns call() throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> R1E<Returns, Param1, E> R1E(){
-                        return (param1) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> R2E<Returns, Param1, Param2, E> R2E(){
-                        return (param1, param2) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (param1, param2, param3) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                return call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call();
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default VE<E> VE(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> V1E<Param1, E> V1E() {
-                        return (param1) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> V2E<Param1, Param2, E> V2E() {
-                        return (param1, param2) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (param1, param2, param3) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call();
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** R1  = Return of defined type with 1 defined parameters */
-        @FunctionalInterface public interface R1<Returns, Param1> extends R1E<Returns, Param1, RuntimeException>, Function<Param1, Returns> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> R2<Returns, Param1, Param2> R2(){
-                        return (param1, param2) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (param1, param2, param3) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V1<Param1> V1(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> V2<Param1, Param2> V2() {
-                        return (param1, param2) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> V3<Param1, Param2, Param3> V3() {
-                        return (param1, param2, param3) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default Returns apply(Param1 param1) {
-                        return call(param1);
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** R1E = Return of defined type with 1 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface R1E<Returns, Param1, E extends Throwable> {
-                public Returns call(Param1 param1) throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> R2E<Returns, Param1, Param2, E> R2E(){
-                        return (param1, param2) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (param1, param2, param3) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V1E<Param1, E> V1E(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> V2E<Param1, Param2, E> V2E() {
-                        return (param1, param2) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (param1, param2, param3) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1);
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** R2  = Return of defined type with 2 defined parameters */
-        @FunctionalInterface public interface R2<Returns, Param1, Param2> extends R2E<Returns, Param1, Param2, RuntimeException>, BiFunction<Param1, Param2, Returns> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> R3<Returns, Param1, Param2, Param3> R3(){
-                        return (param1, param2, param3) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V2<Param1, Param2> V2(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> V3<Param1, Param2, Param3> V3() {
-                        return (param1, param2, param3) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default Returns apply(Param1 param1, Param2 param2) {
-                        return call(param1, param2);
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** R2E = Return of defined type with 2 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface R2E<Returns, Param1, Param2, E extends Throwable> {
-                Returns call(Param1 param1, Param2 param2) throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> R3E<Returns, Param1, Param2, Param3, E> R3E(){
-                        return (param1, param2, param3) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V2E<Param1, Param2, E> V2E(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (param1, param2, param3) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2);
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** R3  = Return of defined type with 3 defined parameters */
-        @FunctionalInterface public interface R3<Returns, Param1, Param2, Param3> extends R3E<Returns, Param1, Param2, Param3, RuntimeException> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> R4<Returns, Param1, Param2, Param3, Param4> R4(){
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2, param3);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V3<Param1, Param2, Param3> V3(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** R3E = Return of defined type with 3 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface R3E<Returns, Param1, Param2, Param3, E extends Throwable> {
-                Returns call(Param1 param1, Param2 param2, Param3 param3) throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                return call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2, param3);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.Split.java
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V3E<Param1, Param2, Param3, E> V3E(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** R4  = Return of defined type with 4 defined parameters */
-        @FunctionalInterface public interface R4<Returns, Param1, Param2, Param3, Param4> extends R4E<Returns, Param1, Param2, Param3, Param4, RuntimeException> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2, param3, param4);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V4<Param1, Param2, Param3, Param4> V4(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> V5<Param1, Param2, Param3, Param4, Param5> V5(){
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3, param4);
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** R4E = Return of defined type with 4 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface R4E<Returns, Param1, Param2, Param3, Param4, E extends Throwable> {
-                Returns call(Param1 param1, Param2 param2, Param3 param3, Param4 param4) throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E(){
-                        return (param1, param2, param3, param4, param5) -> {
-                                return call(param1, param2, param3, param4);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V4E<Param1, Param2, Param3, Param4, E> V4E(){
-                        return this::call;
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value and ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3, param4);
-                        };
-                }
-
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** R5  = Return of defined type with 4 defined parameters */
-        @FunctionalInterface public interface R5<Returns, Param1, Param2, Param3, Param4, Param5> extends R5E<Returns, Param1, Param2, Param3, Param4, Param5, RuntimeException> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V5<Param1, Param2, Param3, Param4, Param5> V5(){
-                        return this::call;
-                }
-        }
-
-        /** R5E = Return of defined type with 4 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface R5E<Returns, Param1, Param2, Param3, Param4, Param5, E extends Throwable> {
-                Returns call(Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) throws E;
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default V5E<Param1, Param2, Param3, Param4, Param5,E> V5E(){
-                        return this::call;
-                }
-        }
-
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** RP  = Returns of defined type, and unlimited amount of defined parameters, all of the same specified type P */
-        @FunctionalInterface public interface RP<Returns, P> extends RPE<Returns, P, RuntimeException> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default VP<P> VP(){
-                        return this::call;
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** RPE  = Returns of defined type, and unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
-        @FunctionalInterface public interface RPE<Returns, P, E extends Throwable> {
-                Returns call(Params<P> params) throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default VPE<P, E> VPE(){
-                        return this::call;
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Is ok to call, but should not be overriden.
-                 * Override call(Params<P> params) instead.
-                 */
-                /* final */ default Returns call(P... params) throws E {
-                        return this.call(new Params<P>(params) );
-                }
-        }
-
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** RO = Returns defined type, and takes an unlimited amount of undefined parameters (type Object) */
-        @FunctionalInterface public interface RO<Returns> extends ROE<Returns, RuntimeException>, RP<Returns, Object> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default VO VO(){
-                        return this::call;
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** ROE = Returns defined type, and takes an unlimited amount of undefined parameters (type Object) that can throw a Throwable E */
-        @FunctionalInterface public interface ROE<Returns, E extends Throwable> extends RPE<Returns, Object, E> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply ignoring the return value.
-                 */
-                /* final */ default VOE<E> VOE(){
-                        return this::call;
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** OO = Returns undefined type Object, and takes an unlimited amount of undefined parameters (type Object) */
-        @FunctionalInterface public interface OO extends OOE<RuntimeException>, RO<Object> {
-
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** OOE = Returns undefined type Object, and takes an unlimited amount of undefined parameters (type Object) that can throw a Throwable E */
-        @FunctionalInterface public interface OOE<E extends Throwable> extends ROE<Object, E> {
-
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        // Voids are treated specially as well to cover the complete spectrum for static declaration and usage
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V   = V0 = Void that takes zero parameters */
-        @FunctionalInterface public interface V extends VE<RuntimeException>, Runnable {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> V1<Param1> V1() {
-                        return (Param1 param1) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> V2<Param1, Param2> V2() {
-                        return (param1, param2) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> V3<Param1, Param2, Param3> V3() {
-                        return (param1, param2, param3) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call();
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R<Returns> R() {
-                        return () -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1> R1<Returns, Param1> R1() {
-                        return (param1) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2> R2<Returns, Param1, Param2> R2() {
-                        return (param1, param2) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (param1, param2, param3) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(); return null;
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default void run() {
-                        call();
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** VE  = V0E = Void that takes zero parameters, and that can throw a Throwable E */
-        @FunctionalInterface public interface VE<E extends Throwable> {
-                void call() throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1> V1E<Param1, E> V1E() {
-                        return p -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2> V2E<Param1, Param2, E> V2E() {
-                        return (param1, param2) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (param1, param2, param3) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call();
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param1, Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call();
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> RE<Returns, E> RE() {
-                        return () -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1> R1E<Returns, Param1, E> R1E(){
-                        return (param1) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2> R2E<Returns, Param1, Param2, E> R2E(){
-                        return (param1, param2) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (param1, param2, param3) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param1, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V1  = Void with 1 defined parameters */
-        @FunctionalInterface public interface V1<Param1> extends V1E<Param1, RuntimeException>, Consumer<Param1> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> V2<Param1, Param2> V2() {
-                        return (Param1 param1, Param2 param2) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> V3<Param1, Param2, Param3> V3() {
-                        return (param1, param2, param3) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R1<Returns, Param1> R1() {
-                        return (Param1 param1) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2> R2<Returns, Param1, Param2> R2() {
-                        return (param1, param2) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (param1, param2, param3) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default void accept(Param1 param1) {
-                        call(param1);
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** V1E = Void with 1 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface V1E<Param1, E extends Throwable> {
-                void call(Param1 param1) throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2> V2E<Param1, Param2, E> V2E() {
-                        return (Param1 param1, Param2 param2) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (param1, param2, param3) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R1E<Returns, Param1, E> R1E() {
-                        return (Param1 param1) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2> R2E<Returns, Param1, Param2, E> R2E() {
-                        return (param1, param2) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (param1, param2, param3) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V2  = Void with 2 defined parameters */
-        @FunctionalInterface public interface V2<Param1, Param2> extends V2E<Param1, Param2, RuntimeException>, BiConsumer<Param1, Param2> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> V3<Param1, Param2, Param3> V3() {
-                        return (Param1 param1, Param2 param2, Param3 param3) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R2<Returns, Param1, Param2> R2() {
-                        return (Param1 param1, Param2 param2) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (param1, param2, param3) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                @Override /* final */ default void accept(Param1 param1, Param2 param2) {
-                        call(param1, param2);
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** V2E = Void with 2 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface V2E<Param1, Param2, E extends Throwable> {
-                void call(Param1 param1, Param2 param2) throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3> V3E<Param1, Param2, Param3, E> V3E() {
-                        return (Param1 param1, Param2 param2, Param3 param3) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R2E<Returns, Param1, Param2, E> R2E() {
-                        return (Param1 param1, Param2 param2) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (param1, param2, param3) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V3  = Void with 3 defined parameters */
-        @FunctionalInterface public interface V3<Param1, Param2, Param3> extends V3E<Param1, Param2, Param3, RuntimeException> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> V4<Param1, Param2, Param3, Param4> V4() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R3<Returns, Param1, Param2, Param3> R3() {
-                        return (Param1 param1, Param2 param2, Param3 param3) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** V3E = Void with 3 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface V3E<Param1, Param2, Param3, E extends Throwable> {
-                void call(Param1 param1, Param2 param2, Param3 param3) throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R3E<Returns, Param1, Param2, Param3, E> R3E() {
-                        return (Param1 param1, Param2 param2, Param3 param3) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (param1, param2, param3, param4) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V4  = Void with 4 defined parameters */
-        @FunctionalInterface public interface V4<Param1, Param2, Param3, Param4> extends V4E<Param1, Param2, Param3, Param4, RuntimeException> {
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
-                                call(param1, param2, param3, param4);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R4<Returns, Param1, Param2, Param3, Param4> R4() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
-                                call(param1, param2, param3, param4); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
-                                call(param1, param2, param3, param4); return null;
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** V4E = Void with 4 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface V4E<Param1, Param2, Param3, Param4, E extends Throwable> {
-                void call(Param1 param1, Param2 param2, Param3 param3, Param4 param4) throws E;
-
-                /**
-                 * Main void conversion convenience method.
-                 *
-                 * Convert this lambda to one that expects more parameters by simply ignoring using the extra parameters.
-                 */
-                /* final */ default <Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
-                                call(param1, param2, param3, param4);
-                        };
-                }
-
-                // ----------
-                // ----------
-                // ----------
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
-                                call(param1, param2, param3, param4); return null;
-                        };
-                }
-
-                /**
-                 * Secondary void conversion convenience method for direct conversion avoiding having to make multiple chained conversions from main convience method to another main convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null and ignoring using the extra parameters.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (param1, param2, param3, param4, param5) -> {
-                                call(param1, param2, param3, param4); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** V5  = Void with 5 defined parameters */
-        @FunctionalInterface public interface V5<Param1, Param2, Param3, Param4, Param5> extends V5E<Param1, Param2, Param3, Param4, Param5, RuntimeException>{
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
-                                call(param1, param2, param3, param4, param5); return null;
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** V5E = Void with 5 defined parameters that can throw a Throwable E */
-        @FunctionalInterface public interface V5E<Param1, Param2, Param3, Param4, Param5, E extends Throwable> {
-                void call(Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) throws E;
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
-                        return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
-                                call(param1, param2, param3, param4, param5); return null;
-                        };
-                }
-        }
-
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** VP  = Void that takes an unlimited amount of defined parameters, all of the same specified type P */
-        @FunctionalInterface public interface VP<Param> extends VPE<Param, RuntimeException> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> RP<Returns, Param> RP() {
-                        return (Params<Param> params) -> {
-                                call(params); return null;
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** VPE = Void that takes an unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
-        @FunctionalInterface public interface VPE<Param, E extends Throwable> {
-                void call(Params<Param> params) throws E;
-
-                /**
-                 * Is ok to call, but should not be overriden.
-                 * Override call(Params<P> params) instead.
-                 */
-                /* final */ default void call(Param ... params) throws E {
-                        call(new Params<Param>(params));
-                }
-
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> RPE<Returns, Param, E> RPE() {
-                        return (Params<Param> params) -> {
-                                call(params); return null;
-                        };
-                }
-        }
-
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////
-
-        /** VO  = Void that takes an unlimited amount of undefined parameters (type Object) */
-        @FunctionalInterface public interface VO extends VOE<RuntimeException>, VP<Object> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> RO<Returns> RO() {
-                        return (Params<Object> params) -> {
-                                call(params); return null;
-                        };
-                }
-        }
-
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        /** VOE = Void that takes an unlimited amount of undefined parameters (type Object) and that can throw a Throwable E */
-        @FunctionalInterface public interface VOE<E extends Throwable> extends VPE<Object, E> {
-                /**
-                 * Main returning conversion convenience method.
-                 *
-                 * Convert this lambda to a void equal by simply returning null.
-                 *
-                 * Do note. This is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
-                 * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whateve the lambda returns, or false for some iterating base method and where a null value is acceptable and properly handled.
-                 * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
-                 */
-                /* final */ default <Returns> ROE<Returns, E> ROE() {
-                        return (Params<Object> params) -> {
-                                call(params); return null;
-                        };
-                }
-        }
+    Lambda(){ /* should remain package local / private to avoid code completion on new */ }
     
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
     
+    /** R = R0 = Return of defined type with 0 parameters */
+    @FunctionalInterface public interface R<Returns> extends RE<Returns, RuntimeException>, Supplier<Returns> {
         /**
-         * @author Joseph S.
-         *
-         * @since 1.8
-         */
-        public static final class Params<Param> {
-                private final Param[] params;
-        
-                Params(Param... params) {
-                        this.params = params;
-                }
-        
-                public Param at(int index) {
-                        return params.length > index ? (Param) params[index] : null;
-                }
-        
-                public int size() {
-                        return params.length;
-                }
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1> R1<Returns, Param1> R1(){
+            return (param1) -> {
+                return call();
+            };
         }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> R2<Returns, Param1, Param2> R2() {
+            return (param1, param2) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
+            return (param1, param2, param3) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call();
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V V(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1> V1<Param1> V1() {
+            return (param1) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> V2<Param1, Param2> V2() {
+            return (param1, param2) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> V3<Param1, Param2, Param3> V3() {
+            return (param1, param2, param3) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call();
+            };
+        }
+        
+        // ---------- IMPLEMENTING SUPPLIER INTERFACE  ----------
+        
+        /* @final */ @Override default Returns get() {
+            return call();
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** RE  = Return of defined type with 0 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface RE<Returns, E extends Throwable> {
+        Returns call() throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1> R1E<Returns, Param1, E> R1E(){
+            return (param1) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> R2E<Returns, Param1, Param2, E> R2E(){
+            return (param1, param2) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (param1, param2, param3) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                return call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call();
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default VE<E> VE(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1> V1E<Param1, E> V1E() {
+            return (param1) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> V2E<Param1, Param2, E> V2E() {
+            return (param1, param2) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (param1, param2, param3) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call();
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    
+    /** R1  = Return of defined type with 1 defined parameters */
+    @FunctionalInterface public interface R1<Returns, Param1> extends R1E<Returns, Param1, RuntimeException>, Function<Param1, Returns> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2> R2<Returns, Param1, Param2> R2(){
+            return (param1, param2) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
+            return (param1, param2, param3) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1);
+            };
+        }
+    
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V1<Param1> V1(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2> V2<Param1, Param2> V2() {
+            return (param1, param2) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> V3<Param1, Param2, Param3> V3() {
+            return (param1, param2, param3) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1);
+            };
+        }
+        
+        // ---------- IMPLEMENTING FUNCTION INTERFACE  ----------
+        
+        /* @final */ @Override default Returns apply(Param1 param1) {
+            return call(param1);
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** R1E = Return of defined type with 1 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface R1E<Returns, Param1, E extends Throwable> {
+        public Returns call(Param1 param1) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2> R2E<Returns, Param1, Param2, E> R2E(){
+            return (param1, param2) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (param1, param2, param3) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                return call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V1E<Param1, E> V1E(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2> V2E<Param1, Param2, E> V2E() {
+            return (param1, param2) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (param1, param2, param3) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1);
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** R2  = Return of defined type with 2 defined parameters */
+    @FunctionalInterface public interface R2<Returns, Param1, Param2> extends R2E<Returns, Param1, Param2, RuntimeException>, BiFunction<Param1, Param2, Returns> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3> R3<Returns, Param1, Param2, Param3> R3(){
+            return (param1, param2, param3) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V2<Param1, Param2> V2(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3> V3<Param1, Param2, Param3> V3() {
+            return (param1, param2, param3) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2);
+            };
+        }
+        
+        // ---------- IMPLEMENTING BIFUNCTION INTERFACE  ----------
+        
+        /* @final */ @Override default Returns apply(Param1 param1, Param2 param2) {
+            return call(param1, param2);
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** R2E = Return of defined type with 2 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface R2E<Returns, Param1, Param2, E extends Throwable> {
+        Returns call(Param1 param1, Param2 param2) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3> R3E<Returns, Param1, Param2, Param3, E> R3E(){
+            return (param1, param2, param3) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V2E<Param1, Param2, E> V2E(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (param1, param2, param3) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2);
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** R3  = Return of defined type with 3 defined parameters */
+    @FunctionalInterface public interface R3<Returns, Param1, Param2, Param3> extends R3E<Returns, Param1, Param2, Param3, RuntimeException> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4> R4<Returns, Param1, Param2, Param3, Param4> R4(){
+            return (param1, param2, param3, param4) -> {
+                return call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2, param3);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V3<Param1, Param2, Param3> V3(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3);
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** R3E = Return of defined type with 3 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface R3E<Returns, Param1, Param2, Param3, E extends Throwable> {
+        Returns call(Param1 param1, Param2 param2, Param3 param3) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                return call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2, param3);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Main void conversion convenience method.Split.java
+         *
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V3E<Param1, Param2, Param3, E> V3E(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3);
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** R4  = Return of defined type with 4 defined parameters */
+    @FunctionalInterface public interface R4<Returns, Param1, Param2, Param3, Param4> extends R4E<Returns, Param1, Param2, Param3, Param4, RuntimeException> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2, param3, param4);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V4<Param1, Param2, Param3, Param4> V4(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param5> V5<Param1, Param2, Param3, Param4, Param5> V5(){
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3, param4);
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** R4E = Return of defined type with 4 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface R4E<Returns, Param1, Param2, Param3, Param4, E extends Throwable> {
+        Returns call(Param1 param1, Param2 param2, Param3 param3, Param4 param4) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E(){
+            return (param1, param2, param3, param4, param5) -> {
+                return call(param1, param2, param3, param4);
+            };
+        }
+        
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V4E<Param1, Param2, Param3, Param4, E> V4E(){
+            return this::call;
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value and not using the extra params.
+        **/
+        /* @final */ default <Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3, param4);
+            };
+        }
+        
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** R5  = Return of defined type with 4 defined parameters */
+    @FunctionalInterface public interface R5<Returns, Param1, Param2, Param3, Param4, Param5> extends R5E<Returns, Param1, Param2, Param3, Param4, Param5, RuntimeException> {
+    
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V5<Param1, Param2, Param3, Param4, Param5> V5(){
+            return this::call;
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** R5E = Return of defined type with 4 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface R5E<Returns, Param1, Param2, Param3, Param4, Param5, E extends Throwable> {
+        Returns call(Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) throws E;
+    
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default V5E<Param1, Param2, Param3, Param4, Param5,E> V5E(){
+            return this::call;
+        }
+    }
+    
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** RP  = Returns of defined type, and unlimited amount of defined parameters, all of the same specified type P */
+    @FunctionalInterface public interface RP<Returns, P> extends RPE<Returns, P, RuntimeException> {
+    
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default VP<P> VP(){
+            return this::call;
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** RPE  = Returns of defined type, and unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
+    @FunctionalInterface public interface RPE<Returns, P, E extends Throwable> {
+        Returns call(Args params) throws E;
+    
+        // ---------- VOID CONVERSION METHODS  ----------
+        
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default VPE<P, E> VPE(){
+            return this::call;
+        }
+        
+        // ----------
+        // ----------
+        // ----------
+        
+        /**
+         * Is ok to call, but should not be overriden.
+         * Override call(Params<P> params) instead.
+        **/
+        /* @final */ default Returns call(P... params) throws E {
+            return this.call(new Args(params) );
+        }
+    }
+    
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** RO = Returns defined type, and takes an unlimited amount of undefined parameters (type Object) */
+    @FunctionalInterface public interface RO<Returns> extends ROE<Returns, RuntimeException>, RP<Returns, Object> {
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default VO VO(){
+            return this::call;
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** ROE = Returns defined type, and takes an unlimited amount of undefined parameters (type Object) that can throw a Throwable E */
+    @FunctionalInterface public interface ROE<Returns, E extends Throwable> extends RPE<Returns, Object, E> {
+        /**
+         * Convert this lambda to a void equivalent by not using the return value.
+        **/
+        /* @final */ default VOE<E> VOE(){
+            return this::call;
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** OO = Returns undefined type Object, and takes an unlimited amount of undefined parameters (type Object) */
+    @FunctionalInterface public interface OO extends OOE<RuntimeException>, RO<Object> {
+    
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** OOE = Returns undefined type Object, and takes an unlimited amount of undefined parameters (type Object) that can throw a Throwable E */
+    @FunctionalInterface public interface OOE<E extends Throwable> extends ROE<Object, E> {
+    
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    // Voids are treated specially as well to cover the complete spectrum for static declaration and usage
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V   = V0 = Void that takes zero parameters */
+    @FunctionalInterface public interface V extends VE<RuntimeException>, Runnable {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1> V1<Param1> V1() {
+            return (Param1 param1) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> V2<Param1, Param2> V2() {
+            return (param1, param2) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> V3<Param1, Param2, Param3> V3() {
+            return (param1, param2, param3) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call();
+            };
+        }
+        
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R<Returns> R() {
+            return () -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1> R1<Returns, Param1> R1() {
+            return (param1) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2> R2<Returns, Param1, Param2> R2() {
+            return (param1, param2) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
+            return (param1, param2, param3) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(); return null;
+            };
+        }
+        
+        // ---------- IMPLEMENTING RUNNABLE INTERFACE  ----------
+        
+        /* @final */ @Override default void run() {
+            call();
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** VE  = V0E = Void that takes zero parameters, and that can throw a Throwable E */
+    @FunctionalInterface public interface VE<E extends Throwable> {
+        void call() throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1> V1E<Param1, E> V1E() {
+            return p -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2> V2E<Param1, Param2, E> V2E() {
+            return (param1, param2) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (param1, param2, param3) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call();
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param1, Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call();
+            };
+        }
+        
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> RE<Returns, E> RE() {
+            return () -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1> R1E<Returns, Param1, E> R1E(){
+            return (param1) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2> R2E<Returns, Param1, Param2, E> R2E(){
+            return (param1, param2) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (param1, param2, param3) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                call(); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param1, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V1  = Void with 1 defined parameters */
+    @FunctionalInterface public interface V1<Param1> extends V1E<Param1, RuntimeException>, Consumer<Param1> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2> V2<Param1, Param2> V2() {
+            return (Param1 param1, Param2 param2) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> V3<Param1, Param2, Param3> V3() {
+            return (param1, param2, param3) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1);
+            };
+        }
+        
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R1<Returns, Param1> R1() {
+            return (Param1 param1) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2> R2<Returns, Param1, Param2> R2() {
+            return (param1, param2) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3> R3<Returns, Param1, Param2, Param3> R3() {
+            return (param1, param2, param3) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1); return null;
+            };
+        }
+        
+        // ---------- IMPLEMENTING CONSUMER INTERFACE -----------
+        
+        /* @final */ @Override default void accept(Param1 param1) {
+            call(param1);
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** V1E = Void with 1 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface V1E<Param1, E extends Throwable> {
+        void call(Param1 param1) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2> V2E<Param1, Param2, E> V2E() {
+            return (Param1 param1, Param2 param2) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (param1, param2, param3) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param2, Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1);
+            };
+        }
+        
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R1E<Returns, Param1, E> R1E() {
+            return (Param1 param1) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2> R2E<Returns, Param1, Param2, E> R2E() {
+            return (param1, param2) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (param1, param2, param3) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param2, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V2  = Void with 2 defined parameters */
+    @FunctionalInterface public interface V2<Param1, Param2> extends V2E<Param1, Param2, RuntimeException>, BiConsumer<Param1, Param2> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3> V3<Param1, Param2, Param3> V3() {
+            return (Param1 param1, Param2 param2, Param3 param3) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2);
+            };
+        }
+        
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Do note. This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R2<Returns, Param1, Param2> R2() {
+            return (Param1 param1, Param2 param2) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3> R3<Returns, Param1, Param2, Param3> R3() {
+            return (param1, param2, param3) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        // ---------- IMPLEMENTING BICONSUMER INTERFACE  ----------
+        
+        /* @final */ @Override default void accept(Param1 param1, Param2 param2) {
+            call(param1, param2);
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** V2E = Void with 2 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface V2E<Param1, Param2, E extends Throwable> {
+        void call(Param1 param1, Param2 param2) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3> V3E<Param1, Param2, Param3, E> V3E() {
+            return (Param1 param1, Param2 param2, Param3 param3) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param3, Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2);
+            };
+        }
+    
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R2E<Returns, Param1, Param2, E> R2E() {
+            return (Param1 param1, Param2 param2) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (param1, param2, param3) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param3, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V3  = Void with 3 defined parameters */
+    @FunctionalInterface public interface V3<Param1, Param2, Param3> extends V3E<Param1, Param2, Param3, RuntimeException> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4> V4<Param1, Param2, Param3, Param4> V4() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
+                call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3);
+            };
+        }
+    
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R3<Returns, Param1, Param2, Param3> R3() {
+            return (Param1 param1, Param2 param2, Param3 param3) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param4> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param4, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** V3E = Void with 3 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface V3E<Param1, Param2, Param3, E extends Throwable> {
+        void call(Param1 param1, Param2 param2, Param3 param3) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4> V4E<Param1, Param2, Param3, Param4, E> V4E() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
+                call(param1, param2, param3);
+            };
+        }
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param4, Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3);
+            };
+        }
+    
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R3E<Returns, Param1, Param2, Param3, E> R3E() {
+            return (Param1 param1, Param2 param2, Param3 param3) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param4> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (param1, param2, param3, param4) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param4, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V4  = Void with 4 defined parameters */
+    @FunctionalInterface public interface V4<Param1, Param2, Param3, Param4> extends V4E<Param1, Param2, Param3, Param4, RuntimeException> {
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param5> V5<Param1, Param2, Param3, Param4, Param5> V5() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
+                call(param1, param2, param3, param4);
+            };
+        }
+    
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R4<Returns, Param1, Param2, Param3, Param4> R4() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
+                call(param1, param2, param3, param4); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param5> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
+                call(param1, param2, param3, param4); return null;
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** V4E = Void with 4 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface V4E<Param1, Param2, Param3, Param4, E extends Throwable> {
+        void call(Param1 param1, Param2 param2, Param3 param3, Param4 param4) throws E;
+        
+        /**
+         * Convert this lambda to one that expects more parameters by not using the extra params.
+        **/
+        /* @final */ default <Param5> V5E<Param1, Param2, Param3, Param4, Param5, E> V5E() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
+                call(param1, param2, param3, param4);
+            };
+        }
+    
+        // ---------- RETURNING CONVERSION METHODS -----------
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R4E<Returns, Param1, Param2, Param3, Param4, E> R4E() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4) -> {
+                call(param1, param2, param3, param4); return null;
+            };
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null and not using the extra params.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns, Param5> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (param1, param2, param3, param4, param5) -> {
+                call(param1, param2, param3, param4); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** V5  = Void with 5 defined parameters */
+    @FunctionalInterface public interface V5<Param1, Param2, Param3, Param4, Param5> extends V5E<Param1, Param2, Param3, Param4, Param5, RuntimeException>{
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R5<Returns, Param1, Param2, Param3, Param4, Param5> R5() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
+                call(param1, param2, param3, param4, param5); return null;
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** V5E = Void with 5 defined parameters that can throw a Throwable E */
+    @FunctionalInterface public interface V5E<Param1, Param2, Param3, Param4, Param5, E extends Throwable> {
+        void call(Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) throws E;
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> R5E<Returns, Param1, Param2, Param3, Param4, Param5, E> R5E() {
+            return (Param1 param1, Param2 param2, Param3 param3, Param4 param4, Param5 param5) -> {
+                call(param1, param2, param3, param4, param5); return null;
+            };
+        }
+    }
+    
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** VP  = Void that takes an unlimited amount of defined parameters, all of the same specified type P */
+    @FunctionalInterface public interface VP<Param> extends VPE<Param, RuntimeException> {
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> RP<Returns, Param> RP() {
+            return (Args params) -> {
+                call(params); return null;
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** VPE = Void that takes an unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
+    @FunctionalInterface public interface VPE<Param, E extends Throwable> {
+        void call(Args params) throws E;
+        
+        /**
+         * Is ok to call, but should not be overriden.
+         * Override call(Params<P> params) instead.
+        **/
+        /* @final */ default void call(Param ... params) throws E {
+            call(new Args(params));
+        }
+        
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> RPE<Returns, Param, E> RPE() {
+            return (Args params) -> {
+                call(params); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /** VO  = Void that takes an unlimited amount of undefined parameters (type Object) */
+    @FunctionalInterface public interface VO extends VOE<RuntimeException>, VP<Object> {
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> RO<Returns> RO() {
+            return (Args params) -> {
+                call(params); return null;
+            };
+        }
+    }
+    
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    /** VOE = Void that takes an unlimited amount of undefined parameters (type Object) and that can throw a Throwable E */
+    @FunctionalInterface public interface VOE<E extends Throwable> extends VPE<Object, E> {
+        /**
+         * Convert this lambda to a void equivalent by returning null.
+         *
+         * Attention!
+         *
+         * This conversion method is to be used if you intend to return null anyway, allowing for a quicker and less syntatically verbose conversion.
+         * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
+         * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
+        **/
+        /* @final */ default <Returns> ROE<Returns, E> ROE() {
+            return (Args params) -> {
+                call(params); return null;
+            };
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    
+    /**
+     * @author Joseph S.
+     *
+     * Convenience class when creating a lambda that takes varargs ...
+     *
+     * Allows for easier access and casting by index. 
+     *
+     * @since 1.8
+     */
+    public static final class Args<P> {
+        private final P[] args;
+        
+        Args(P... args) {
+            this.args = args;
+        }
+        
+        public P at(int index) {
+            return args.length > index ? (P) args[index] : null;
+        }
+        
+        public int size() {
+            return args.length;
+        }
+    }
 }

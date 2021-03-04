@@ -2,7 +2,7 @@
 //    Copyright(C) 2020, Momomo LTD.                                                                                                      //
 //    All rights reserved.                                                                                                                //
 //                                                                                                                                        //
-//    Momomo LTD Opensource License 'MoL1' (https://raw.githubusercontent.com/momomo/momomo.com.Licenses/master/MoL1)                     //
+//    Momomo LTD Opensource License 'MoL1' (https://raw.githubusercontent.com/momomo/momomo.com.Licenses/HEAD/MoL1)                       //
 //                                                                                                                                        //
 //    (1) Use of this source code, wether identical, changed or altered is allowed, for commercial and non-commercial use.                //
 //                                                                                                                                        //
