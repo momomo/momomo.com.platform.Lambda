@@ -48,46 +48,46 @@ import java.util.function.*;
  * Default methods with '@final' comments are to be considered final and should not be overriden.
  *
  * Returning lambdas with zero to 5 parameters.
- * @see R
- * @see RE
- * @see R1
- * @see R1E
- * @see R2
- * @see R2E
- * @see R3
- * @see R3E
- * @see R4
- * @see R4E
- * @see R5
- * @see R5E
+ * @see R      // Return type defined, 0 params. Only runtime exception allowed to be thrown.
+ * @see RE     // Return type defined, 0 params. You can define exception type to be thrown.
+ * @see R1     // Return type defined, 1  param. Only runtime exception allowed to be thrown.
+ * @see R1E    // Return type defined, 1  param. You can define exception type to be thrown.
+ * @see R2     // .                                -- "" --
+ * @see R2E    //                                  -- "" --
+ * @see R3     //                                  -- "" --
+ * @see R3E    //                                  -- "" --
+ * @see R4     //                                  -- "" --
+ * @see R4E    //                                  -- "" --
+ * @see R5     //                                  -- "" --
+ * @see R5E    //                                  -- "" --
  *
- * Varargs returning version with defined parameters, and Object parameters
- * @see RP
- * @see RPE
- * @see RO
- * @see ROE
- * @see OO
- * @see OOE
+ * Returning lambads with varargs parameters
+ * @see RP     // Return type defined           , unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
+ * @see RPE    // Return type defined           , unlimited params of 1 defined type. You can define exception type to be thrown.
+ * @see RO     // Return type defined           , unlimited params of Object type   . Only runtime exception allowed to be thrown.
+ * @see ROE    // Return type defined           , unlimited params of Object type   . You can define exception type to be thrown.
+ * @see OO     // Return type undefined (Object), unlimited params of Object type   . Only runtime exception allowed to be thrown.
+ * @see OOE    // Return type undefined (Object), unlimited params of Object type   . You can define exception type to be thrown.
  *
  * Void based lambdas with zero to 5 parameters
- * @see V
- * @see VE
- * @see V1
- * @see V1E
- * @see V2
- * @see V2E
- * @see V3
- * @see V3E
- * @see V4
- * @see V4E
- * @see V5
- * @see V5E
+ * @see V      // Void lambda, can not return, 0 params. Only runtime exception allowed to be thrown.
+ * @see VE     // Void lambda, can not return, 0 params. You can define exception type to be thrown.
+ * @see V1     // Void lambda, can not return, 1  param. Only runtime exception allowed to be thrown
+ * @see V1E    // Void lambda, can not return, 1  param. You can define exception type to be thrown.
+ * @see V2     // .                                -- "" --
+ * @see V2E    //                                  -- "" --
+ * @see V3     //                                  -- "" --
+ * @see V3E    //                                  -- "" --
+ * @see V4     //                                  -- "" --
+ * @see V4E    //                                  -- "" --
+ * @see V5     //                                  -- "" --
+ * @see V5E    //                                  -- "" --
  *
- * Varargs void version with defined parameters, and Object parameters
- * @see VP
- * @see VPE
- * @see VO
- * @see VOE
+ * Varargs void version with defined parameters, and (VO, VOE) object only parameters
+ * @see VP    // Void lambda, can not return, unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
+ * @see VPE   // Void lambda, can not return, unlimited params of 1 defined type. You can define exception type to be thrown.
+ * @see VO    // Void lambda, can not return, unlimited params of Object type   . Only runtime exception allowed to be thrown.
+ * @see VOE   // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
  *
  * Those that ends with E supports throwing of 1 defined exception type.
  * 
