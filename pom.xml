@@ -26,7 +26,7 @@
     
     <groupId>com.momomo</groupId>
     <artifactId>mmm.platform.Lambda</artifactId>
-    <version>2021.03.04.10.51.27</version>
+    <version>5.4.3.2.1.2020.01.24.1-SNAPSHOT</version>
     
     <packaging>jar</packaging>
     
