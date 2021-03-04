@@ -43,8 +43,6 @@
 package momomo.com.platform.Lambda;
 
 /**
- * @author Joseph S.
- *
  * For use in intellij a more suitable name is sometimes 'Closure' because it allows for better / quicker code completion.
  *
  * Lambda has proven annoying to code complete in Intellij possibly due to other classes using the Lambda namespace, albeit not that many more than those using the Closure namespace.
@@ -103,9 +101,9 @@ package momomo.com.platform.Lambda;
  *
  * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
  *
- * @author Joseph S.
- *
  * @since 1.8
+ *
+ * @author Joseph S.
  **/
 public final class Closure extends Lambda {
         Closure(){ /* should remain package local / private to avoid code completion on new */ }

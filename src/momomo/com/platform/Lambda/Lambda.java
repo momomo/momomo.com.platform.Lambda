@@ -45,8 +45,6 @@ package momomo.com.platform.Lambda;
 import java.util.function.*;
 
 /**
- * @author Joseph S.
- *
  * Default methods with '@final' comments are to be considered final and should not be overriden.
  *
  * Returning lambdas with zero to 5 parameters.
@@ -96,6 +94,8 @@ import java.util.function.*;
  * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
  * 
  * @since 1.8
+ *
+ * @author Joseph S.
  */
 public abstract class Lambda {
     Lambda(){ /* should remain package local / private to avoid code completion on new */ }
