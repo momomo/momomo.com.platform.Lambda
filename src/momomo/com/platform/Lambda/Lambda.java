@@ -45,10 +45,54 @@ import java.util.function.*;
 /**
  * @author Joseph S.
  *
- * default methods with '@final' comments are to be considered final and should not be overriden.
+ * Default methods with '@final' comments are to be considered final and should not be overriden.
  *
- * Supports up to five parameters, as well as with and
+ * Returning lambdas with zero to 5 parameters.
+ * @see R
+ * @see RE
+ * @see R1
+ * @see R1E
+ * @see R2
+ * @see R2E
+ * @see R3
+ * @see R3E
+ * @see R4
+ * @see R4E
+ * @see R5
+ * @see R5E
  *
+ * Varargs returning version with defined parameters, and Object parameters
+ * @see RP
+ * @see RPE
+ * @see RO
+ * @see ROE
+ * @see OO
+ * @see OOE
+ *
+ * Void based lambdas with zero to 5 parameters
+ * @see V
+ * @see VE
+ * @see V1
+ * @see V1E
+ * @see V2
+ * @see V2E
+ * @see V3
+ * @see V3E
+ * @see V4
+ * @see V4E
+ * @see V5
+ * @see V5E
+ *
+ * Varargs void version with defined parameters, and Object parameters
+ * @see VP
+ * @see VPE
+ * @see VO
+ * @see VOE
+ *
+ * Those that ends with E supports throwing of 1 defined exception type.
+ * 
+ * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
+ * 
  * @since 1.8
  */
 public abstract class Lambda {
