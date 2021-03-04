@@ -1,0 +1,109 @@
+package momomo.com.platform.Lambda.examples;
+
+import momomo.com.platform.Lambda.Lambda;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+
+/**
+ * @author Joseph S.
+ *
+ * Intentionally package private
+ *
+ * Parts taken from momomo.com.util package
+ */
+class IO {
+    private IO(){}
+    
+    private static final int BUFFER = 8192;
+    
+    public static void main(String[] args) throws IOException {
+        File file = new File("/path/to/some/file.txt");
+    
+        eachLine(file, line -> {
+            System.out.println("Line in file " + line);
+        });
+    
+        eachLine(file, (line, index) -> {
+            System.out.println("Line in file " + line + " at index " + index);
+        });
+    
+        eachLine(file, (line, index) -> {
+            System.out.println("Line in file " + line + " at index " + index);
+        
+            if ( line.equals("someline") ) {
+                System.out.println("Found " + line + "! Aborting further iteration!" );
+            
+                return false;
+            }
+        
+            return true;
+        });
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    
+    public static <E extends Exception> void eachLine(File file, Lambda.V1E<String, E> lambda) throws IOException, E {
+        eachLine(file, lambda.R2E());
+    }
+    public static <E extends Exception> void eachLine(File file, Lambda.V2E<String, Integer, E> lambda) throws IOException, E {
+        eachLine(file, lambda.R2E());
+    }
+    
+    public static <E extends Exception> void eachLine(File file, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
+        eachLine(toURL(file), lambda);
+    }
+    
+    public static <E extends Exception> void eachLine(URL url, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
+        try ( InputStream is = openConnection(url).getInputStream() ) {
+            eachLine(is, lambda);
+        }
+    }
+    
+    public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
+        eachLine(inputStream, (s, integer) -> {
+            return lambda.call(s);
+        });
+    }
+    
+    public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
+        try (InputStreamReader isr = new InputStreamReader(inputStream); BufferedReader bfr = new BufferedReader(isr, BUFFER) ) {
+            int i = 0; String line; while ( (line = bfr.readLine()) != null ) {
+                if ( Boolean.FALSE.equals(lambda.call(line, i++)) ) return;
+            }
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    
+    private static URLConnection openConnection(URL url) throws IOException {
+        return openConnection(url, null);
+    }
+    private static URLConnection openConnection(URL url, Boolean caching) throws IOException {
+        URLConnection connection = url.openConnection();
+        if ( caching != null ) {
+            connection.setUseCaches(caching);
+        }
+        return connection;
+    }
+    
+    private static URL toURL(File dir) {
+        return toURL(toURI(dir));
+    }
+    private static URL toURL(URI uri) {
+        try {
+            return uri.toURL();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private static URI toURI(File file) {
+        return file.toURI();
+    }
+    
+    /////////////////////////////////////////////////////////////////////
+    
+}
