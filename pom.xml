@@ -26,7 +26,7 @@
     
     <groupId>com.momomo</groupId>
     <artifactId>mmm.platform.Lambda</artifactId>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     
     <packaging>jar</packaging>
     
@@ -292,12 +292,13 @@
         
                 <distributionManagement>
                     <repository>
-                        <id>mmm_pom_repository_sonatype</id>
-                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                        <id>mmm_pom_repository_sonatype_private</id>
+                        <!--<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+                        <url>https://s01.oss.sonatype.org/</url>
                     </repository>
             
                     <snapshotRepository>
-                        <id>mmm_pom_repository_sonatype_snapshots</id>
+                        <id>mmm_pom_repository_sonatype_private_snapshots</id>
                         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
                     </snapshotRepository>
                 </distributionManagement>

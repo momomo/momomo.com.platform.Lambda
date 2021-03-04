@@ -37,5 +37,11 @@ Note that whenever possible, the interfaces implement equivalent interfaces such
 #### Contribute
 Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and ideas on things to improve.    
 
-   
-   
+#### Maven dependency using maven central   
+```
+<dependency>
+  <groupId>com.momomo</groupId>
+  <artifactId>mmm.platform.Lambda</artifactId>
+  <version>1.2.7</version>
+</dependency>
+```   
