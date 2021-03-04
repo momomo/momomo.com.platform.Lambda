@@ -26,7 +26,7 @@
     
     <groupId>com.momomo</groupId>
     <artifactId>mmm.platform.Lambda</artifactId>
-    <version>2021.03.04.15.43.59</version>
+    <version>2021.03.04.15.47.11</version>
     
     <packaging>jar</packaging>
     
@@ -252,8 +252,10 @@
                 <distributionManagement>
                     <repository>
                         <id>mmm_pom_sonatype_repository</id>
+                        
+                        <url>https://s01.oss.sonatype.org/</url>
     
-                        <url>https://oss.sonatype.org/service/local/releases/deploy/maven2/</url>
+                        <!--<url>https://oss.sonatype.org/service/local/releases/deploy/maven2/</url>-->
                         
                         <!--<url>https://oss.sonatype.org/content/repositories/releases/</url>-->
     
