@@ -1,6 +1,14 @@
 ## momomo.com.plaform.Lambda
 
 ##### Intuitive generics based functional interfaces 
+Ever confused of names like Supplier, Function, BiFunction, and so forth? Do you find them limiting?
+With this library, you can refer to: 
+* `Lambda.V1` for a void lambda that takes one generic parameter.
+* `Lambda.V2` for a void lambda that takes two generic parameters.
+* `Lambda.R1` for a returning lambda that has a defined return type and takes one generic parameter.
+* `Lambda.R2E` for a returning lambda that has a defined return type and takes two generic parameters, and allow you to define the thrown Exception type as well! 
+  
+ 
 ###### Support for { void | returns | multiple params } & exceptions
 
 
