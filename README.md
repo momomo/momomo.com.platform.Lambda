@@ -1,29 +1,30 @@
-# momomo.com.plaform.Lambda
-Intuitive generics based functional interfaces | Lambda | Closure skeletons with support for { void | returns | multi params } & exceptions
+## momomo.com.plaform.Lambda
+
+##### Intuitive generics based functional interfaces 
+###### Support for { void | returns | multiple params } & exceptions
 
 
+##### [Lambda.java](src/momomo/com/platform/Lambda/Lambda.java)
+Documentation through comments are provided within the class itself. 
+
+##### Examples:  
+
+* [Lists.java](src/momomo/com/platform/Lambda/examples/Lists.java)
+
+  ![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/exampe.lists.2021.03.04.png?raw=true)
 
 
+* [IO.java](src/momomo/com/platform/Lambda/examples/IO.java)
 
+  ![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/exampe.io.2021.03.04.jpg?raw=true)
 
-/**
- * TODO ( Do you wish to help us? Send us an email! )
- * Add E2 - E5 to truly cover all edge cases and possible scenarios.
- * E2 is not that uncommon, nor is E3 which is normally solved with closest common super class (usually Exception class)
- *
- * We expect everything to fit in the single file of Lambda.
- * **/
+##### Other
+Note that whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
 
+##### Contribute
+Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and ideas on things to improve.    
 
+#### Also see our other respositories
 
-For contributors. 
-VX can not really extend RX because that would require the void lambdas to return something. We instead recommend the conversion method to get to a RX.
-
-
-V1 extends Consumer
-V2 extends BiConsumer
-
-R  extends Supplier
-R1 extends Function
-R2 extends BiFunction
-  
+   
+   
