@@ -13,7 +13,7 @@ import java.net.URLConnection;
  *
  * Intentionally package private
  *
- * Parts taken from momomo.com.platform.Util package
+ * Parts taken from momomo.com.platform.IO package
  */
 class IO {
     private IO(){}

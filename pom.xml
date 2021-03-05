@@ -66,11 +66,11 @@
     
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     
-        <skipTests>true</skipTests>
-        <maven.test.skip>true</maven.test.skip>
+        <skipTests>false</skipTests>
+        <maven.test.skip>false</maven.test.skip>
     
         
         <mmm_pom_java_home>${java.home}</mmm_pom_java_home>
@@ -217,10 +217,6 @@
                             <classpathPrefix>${settings.localRepository}</classpathPrefix>
                         </manifest>
                     </archive>
-                    
-                    <excludes>
-                        <exclude>**/rebel.xml</exclude>
-                    </excludes>
                 </configuration>
         
                 <executions>
@@ -288,107 +284,6 @@
     <profiles>
         
 
-        
-            <profile>
-                <id>mmm_pom_profile_sonatype</id>
-        
-                <distributionManagement>
-                    <repository>
-                        <id>mmm_pom_repository_sonatype_private</id>
-                        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                    </repository>
-            
-                    <snapshotRepository>
-                        <id>mmm_pom_repository_sonatype_private_snapshots</id>
-                        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                    </snapshotRepository>
-                </distributionManagement>
-                
-                <properties>
-                    <gpg.passphraseServerId>opensource@momomo.com</gpg.passphraseServerId>
-                    <gpg.defaultKeyring>false</gpg.defaultKeyring>
-                </properties>
-                
-                <build>
-                    <plugins>
-                        
-                            <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-source-plugin</artifactId>
-                                <version>3.2.0</version>
-                                <executions>
-                                    <execution>
-                                        <id>attach-sources</id>
-                                        <phase>verify</phase>
-                                        <goals>
-                                            <goal>jar-no-fork</goal>
-                                        </goals>
-                                    </execution>
-                                </executions>
-                            </plugin>
-                        
-    
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <version>1.6</version>
-                            <executions>
-                                <execution>
-                                    <id>sign-artifacts</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>sign</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-    
-                        <plugin>
-                            <!-- No test sources when releasing which is in the default one -->
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-jar-plugin</artifactId>
-                            <version>3.2.0</version>
-        
-                            <configuration>
-                                <excludes>
-                                    <exclude>**/rebel.xml</exclude>
-                                </excludes>
-                            </configuration>
-                        </plugin>
-    
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>3.2.0</version>
-                            <executions>
-                                <execution>
-                                    <id>attach-javadocs</id>
-                                    <goals>
-                                        <goal>jar</goal>
-                                    </goals>
-                
-                                    
-                                    <configuration>
-                                        <!-- So we can include the baggage.java file -->
-                                        <show>private</show>
-                                        <failOnError>false</failOnError>
-                                        <detectOfflineLinks>false</detectOfflineLinks>
-                                        <doclint>all,-missing</doclint>
-                                        <nohelp>true</nohelp>
-                                        <excludePackageNames>momomo.com.platform*:momomo.com.application.*</excludePackageNames>
-                                        <quiet>true</quiet>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-    
-                        
-                    
-                        
-                    </plugins>
-                </build>
-                
-            </profile>
         
     </profiles>
     
