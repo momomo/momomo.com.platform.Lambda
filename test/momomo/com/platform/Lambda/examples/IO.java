@@ -45,30 +45,95 @@ class IO {
     }
     
     /////////////////////////////////////////////////////////////////////
+    // File
+    /////////////////////////////////////////////////////////////////////
     
+    /**
+     * @param file
+     * @param lambda passes line only, iterates all
+     */
     public static <E extends Exception> void eachLine(File file, Lambda.V1E<String, E> lambda) throws IOException, E {
         eachLine(file, lambda.R2E());
     }
+    /**
+     * @param file
+     * @param lambda passes line and line index, iterates all
+     */
     public static <E extends Exception> void eachLine(File file, Lambda.V2E<String, Integer, E> lambda) throws IOException, E {
         eachLine(file, lambda.R2E());
     }
     
+    /**
+     * @param file
+     * @param lambda passes line only, return false to abort iteration anytime
+     */
+    public static <E extends Exception> void eachLine(File file, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
+        eachLine(file, lambda.R2E());
+    }
+    
+    /**
+     * @param file
+     * @param lambda passes line and line index, return false to abort iteration anytime
+     */
     public static <E extends Exception> void eachLine(File file, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
         eachLine(toURL(file), lambda);
     }
     
+    /////////////////////////////////////////////////////////////////////
+    // URL
+    /////////////////////////////////////////////////////////////////////
+    
+    /**
+     * @param url
+     * @param lambda passes line only, return false to abort iteration anytime
+     */
+    public static <E extends Exception> void eachLine(URL url, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
+        eachLine(url, lambda.R2E());
+    }
+    
+    /**
+     * @param url
+     * @param lambda passes line and line index, return false to abort iteration anytime
+     */
     public static <E extends Exception> void eachLine(URL url, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
         try ( InputStream is = openConnection(url).getInputStream() ) {
             eachLine(is, lambda);
         }
     }
     
+    /////////////////////////////////////////////////////////////////////
+    // InputStream
+    /////////////////////////////////////////////////////////////////////
+    
+    /**
+     * @param inputStream
+     * @param lambda passes line only, iterates all
+     */
+    public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.V1E<String, E> lambda) throws IOException, E {
+        eachLine(inputStream, lambda.R1E());
+    }
+    
+    /**
+     * @param inputStream
+     * @param lambda passes line and line index, iterates all
+     */
+    public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.V2E<String, Integer, E> lambda) throws IOException, E {
+        eachLine(inputStream, lambda.R2E());
+    }
+    
+    /**
+     * @param inputStream
+     * @param lambda passes line only, return false to abort iteration anytime
+     */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
         eachLine(inputStream, (s, integer) -> {
             return lambda.call(s);
         });
     }
-    
+    /**
+     * @param inputStream
+     * @param lambda passes line and line index, return false to abort iteration anytime
+     */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
         try (InputStreamReader isr = new InputStreamReader(inputStream); BufferedReader bfr = new BufferedReader(isr, BUFFER) ) {
             int i = 0; String line; while ( (line = bfr.readLine()) != null ) {
@@ -77,6 +142,8 @@ class IO {
         }
     }
     
+    /////////////////////////////////////////////////////////////////////
+    // Below supports the methods above and not part of the example
     /////////////////////////////////////////////////////////////////////
     
     private static URLConnection openConnection(URL url) throws IOException {
