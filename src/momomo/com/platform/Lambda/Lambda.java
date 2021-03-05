@@ -90,9 +90,9 @@ import java.util.function.*;
  * @see VOE   // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
  *
  * Those that ends with E supports throwing of 1 defined exception type.
- * 
+ *
  * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
- * 
+ *
  * @since 1.8
  *
  * @author Joseph S.
@@ -955,7 +955,7 @@ public abstract class Lambda {
     
     /** RPE  = Returns of defined type, and unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
     @FunctionalInterface public interface RPE<Returns, P, E extends Throwable> {
-        Returns call(Args params) throws E;
+        Returns call(Args<P> params) throws E;
     
         // ---------- VOID CONVERSION METHODS  ----------
         
@@ -975,7 +975,7 @@ public abstract class Lambda {
          * Override call(Params<P> params) instead.
         **/
         /* @final */ default Returns call(P... params) throws E {
-            return this.call(new Args(params) );
+            return this.call(new Args<P>(params) );
         }
     }
     
@@ -2373,7 +2373,7 @@ public abstract class Lambda {
     /////////////////////////////////////////////////////////////////////
     
     /** VP  = Void that takes an unlimited amount of defined parameters, all of the same specified type P */
-    @FunctionalInterface public interface VP<Param> extends VPE<Param, RuntimeException> {
+    @FunctionalInterface public interface VP<P> extends VPE<P, RuntimeException> {
         /**
          * Convert this lambda to a void equivalent by returning null.
          *
@@ -2383,8 +2383,8 @@ public abstract class Lambda {
          * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
          * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
         **/
-        /* @final */ default <Returns> RP<Returns, Param> RP() {
-            return (Args params) -> {
+        /* @final */ default <Returns> RP<Returns, P> RP() {
+            return (Args<P> params) -> {
                 call(params); return null;
             };
         }
@@ -2395,15 +2395,15 @@ public abstract class Lambda {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     /** VPE = Void that takes an unlimited amount of defined parameters, all of the same specified type P that can throw a Throwable E */
-    @FunctionalInterface public interface VPE<Param, E extends Throwable> {
-        void call(Args params) throws E;
+    @FunctionalInterface public interface VPE<P, E extends Throwable> {
+        void call(Args<P> params) throws E;
         
         /**
          * Is ok to call, but should not be overriden.
          * Override call(Params<P> params) instead.
         **/
-        /* @final */ default void call(Param ... params) throws E {
-            call(new Args(params));
+        /* @final */ default void call(P... params) throws E {
+            call(new Args<P>(params));
         }
         
         /**
@@ -2415,8 +2415,8 @@ public abstract class Lambda {
          * Suitable for method overloading when you are building your own API for instance and want to delegate to a base method that maybe returns whatever the lambda.call(...) returns, where a null value is acceptable and properly handled.
          * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
         **/
-        /* @final */ default <Returns> RPE<Returns, Param, E> RPE() {
-            return (Args params) -> {
+        /* @final */ default <Returns> RPE<Returns, P, E> RPE() {
+            return (Args<P> params) -> {
                 call(params); return null;
             };
         }
@@ -2447,7 +2447,7 @@ public abstract class Lambda {
          * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
         **/
         /* @final */ default <Returns> RO<Returns> RO() {
-            return (Args params) -> {
+            return (Args<Object> params) -> {
                 call(params); return null;
             };
         }
@@ -2469,7 +2469,7 @@ public abstract class Lambda {
          * If you are passing a void lambda to a method that expects the lambda to always return a value that can not be null, you should not be returning null in the first place, which is still possible, with or without the use of this conversion convience method.
         **/
         /* @final */ default <Returns> ROE<Returns, E> ROE() {
-            return (Args params) -> {
+            return (Args<Object> params) -> {
                 call(params); return null;
             };
         }
@@ -2493,7 +2493,7 @@ public abstract class Lambda {
      *
      * Convenience class when creating a lambda that takes varargs ...
      *
-     * Allows for easier access and casting by index. 
+     * Allows for easier access and casting by index.
      *
      * @since 1.8
      */
