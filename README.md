@@ -14,7 +14,7 @@ With this library, you can refer to:
  
 Also, going from `Lambda.R2E` to a `Lambda.V2E`, is as easy as calling `lambda.V2E()`.
 
-A great number of libraries has been built on top of this intuitive naming strategy.    
+A great number of libraries has been built on top of this intuitive naming strategy.
 
 #### Maven dependency available on maven central (search.maven.org)
 ##### Dependency   
@@ -51,3 +51,14 @@ Note that whenever possible, the interfaces implement equivalent interfaces such
 
 #### Contribute
 Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and ideas on things to improve.    
+
+#### Coming soon
+* ###### momomo.com.platform.IO
+* ###### momomo.com.platform.Stateful
+* ###### momomo.com.platform.Jedison
+* ###### momomo.com.platform.Transactional
+* ###### momomo.com.platform.Transactional.Hibernate
+* ###### momomo.com.platform.Transactional.Spring
+* ###### momomo.com.platform.MoEV
+* ###### m.bash.sh     
+* ###### MoVC.js
