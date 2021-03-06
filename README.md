@@ -1,7 +1,6 @@
 ## momomo.com.plaform.Lambda
 
-##### Intuitive generics based functional interfaces
-###### Support for void, returns, multiple params & exceptions
+##### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
  
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? Can you keep track of them? Can you easily convert one to another?   
 
