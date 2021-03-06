@@ -92,14 +92,14 @@ package momomo.com.platform.Lambda;
  * @see V5E    //                                  -- "" --
  *
  * Varargs void version with defined parameters, and (VO, VOE) object only parameters
- * @see VP    // Void lambda, can not return, unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
- * @see VPE   // Void lambda, can not return, unlimited params of 1 defined type. You can define exception type to be thrown.
- * @see VO    // Void lambda, can not return, unlimited params of Object type   . Only runtime exception allowed to be thrown.
- * @see VOE   // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
+ * @see VP     // Void lambda, can not return, unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
+ * @see VPE    // Void lambda, can not return, unlimited params of 1 defined type. You can define exception type to be thrown.
+ * @see VO     // Void lambda, can not return, unlimited params of Object type   . Only runtime exception allowed to be thrown.
+ * @see VOE    // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
  *
  * Those that ends with E supports throwing of 1 defined exception type.
  *
- * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
+ * In the future, we might consider adding R1E2, R1E3, ... to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
  *
  * @since 1.8
  *

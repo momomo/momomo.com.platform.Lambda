@@ -91,7 +91,7 @@ import java.util.function.*;
  *
  * Those that ends with E supports throwing of 1 defined exception type.
  *
- * In the future, we might consider adding R1E2, R1E3 to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
+ * In the future, we might consider adding R1E2, R1E3 ... to allow the throwing of multiple exception types rather than having to throw a bigger exception type as of now.
  *
  * @since 1.8
  *
@@ -225,7 +225,7 @@ public abstract class Lambda {
     // ~~~~~~~~~~~~ REPEAT WITH SUPPORT FOR EXCEPTION THROWING ~~~~~~~~~~
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    /** RE  = Return of defined type with 0 defined parameters that can throw a Throwable E */
+    /** RE = ROE = Return of defined type with 0 defined parameters that can throw a Throwable E */
     @FunctionalInterface public interface RE<Returns, E extends Throwable> {
         Returns call() throws E;
         
@@ -1329,7 +1329,7 @@ public abstract class Lambda {
     /////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
     
-    /** V   = V0 = Void that takes zero parameters */
+    /** V = V0 = Void that takes zero parameters */
     @FunctionalInterface public interface V extends VE<RuntimeException>, Runnable {
         /**
          * Convert this lambda to one that expects more parameters by not using the extra params.
