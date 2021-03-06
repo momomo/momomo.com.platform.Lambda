@@ -3,4 +3,5 @@ assets
 target
 mmm.platform.Lambda.iml
 pom.mocp
+pom.xml
 readme.notes.md
