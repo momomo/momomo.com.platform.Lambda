@@ -13,7 +13,7 @@ With this library, you can refer to:
 * ... many more ... 
  
 Also, going from `Lambda.R2E` to a `Lambda.V2E`, is as easy as calling `lambda.V2E()` by ignoring the return value. 
-Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, returning null instead.
+Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, returning null instead which is fine if `lambda.call()` handles null returns properly. 
 
 A great number of libraries has been built on top of this intuitive naming strategy.
 
@@ -23,7 +23,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.Lambda</artifactId>
-  <version>2.0.5</version>
+  <version>2.0.6</version>
 </dependency>                                                      
 ```                         
 ##### Repository
@@ -48,9 +48,11 @@ Documentation through comments are provided within the class itself.
   [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
 
 #### Other
-Note that whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `BiFunction`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
+* Note that whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `BiFunction`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
+  
+  As an example, `Lambda.V extends Runnable` with `run()` implemented to delegate to `call()`, `Lambda.R<R> extends Supplier<R>` with `get()` implemented to delegate to `return call()`, `Lambda.R1<R,P> extends Function<P, R>` with `apply(P param)` implemented to delegate to `return call(param)` and so forth.
 
-As an example, `Lambda.V extends Runnable` with `run()` implemented to delegate to `call()`, `Lambda.R<R> extends Supplier<R>` with `get()` implemented to delegate to `return call()`, `Lambda.R1<R,P> extends Function<P, R>` with `apply(P param)` implemented to delegate to `return call(param)` and so forth.     
+* We have two namespaces. The default namespace is `Lambda` so you could do `Lambda.V1<String>`, or `Lambda.R1<Boolean, String>`. But since the Lambda namespace is sometimes difficult to complete (*intellij*) due to its wide use, you could instead do `Closure.V1`       
 
 #### Recommendation
 * For your base methods, always use a returning lambda with a thrown `Exception` possible, such as `Lambda.R[1-5]E` version since this is most versitale. Then you could add delegating methods `Lambda.V[1-5]E`. 

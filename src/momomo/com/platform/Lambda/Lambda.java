@@ -84,10 +84,10 @@ import java.util.function.*;
  * @see V5E    //                                  -- "" --
  *
  * Varargs void version with defined parameters, and (VO, VOE) object only parameters
- * @see VP    // Void lambda, can not return, unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
- * @see VPE   // Void lambda, can not return, unlimited params of 1 defined type. You can define exception type to be thrown.
- * @see VO    // Void lambda, can not return, unlimited params of Object type   . Only runtime exception allowed to be thrown.
- * @see VOE   // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
+ * @see VP     // Void lambda, can not return, unlimited params of 1 defined type. Only runtime exception allowed to be thrown.
+ * @see VPE    // Void lambda, can not return, unlimited params of 1 defined type. You can define exception type to be thrown.
+ * @see VO     // Void lambda, can not return, unlimited params of Object type   . Only runtime exception allowed to be thrown.
+ * @see VOE    // Void lambda, can not return, unlimited params of Object type   . You can define exception type to be thrown.
  *
  * Those that ends with E supports throwing of 1 defined exception type.
  *
