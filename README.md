@@ -10,7 +10,7 @@ With this library, you can refer to:
 * `Lambda.V2` &nbsp; for a void lambda that takes two generic parameters.
 * `Lambda.R1` &nbsp; for a returning lambda that has a defined return type and takes one generic parameter.
 * `Lambda.R2E` for a returning lambda that has a defined return type and takes two generic parameters, and allows you to define the `thrown exception` type as well.
-* ... **many more** ... 
+* ... ***many more*** ... 
  
 Also, going from `Lambda.R2E` to a `Lambda.V2E`, is as easy as calling `lambda.V2E()` by ignoring the return value. 
 Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, returning null instead which is fine if `lambda.call()` handles null returns properly. 
