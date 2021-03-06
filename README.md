@@ -38,13 +38,14 @@ Documentation through comments are provided within the class itself.
 
 #### Examples:  
 
+* [IO.java](test/momomo/com/platform/Lambda/examples/IO.java)
+
+  [![IO.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
+
 * [Lists.java](test/momomo/com/platform/Lambda/examples/Lists.java)
 
     [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
 
-* [IO.java](test/momomo/com/platform/Lambda/examples/IO.java)
-
-  [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
 
 #### Recommendation
 * Since a `Lambda.V extends Lambda.VE<RuntimeException>` we recommend that you always try to use a `throw` capable Lambda for your declared methods which ultimately depends on intetions like if you want `lambda.call()` to **bubble** non `RuntimeExceptions` or if you want to force the handlement of `exception` inside the lambda body (think `Runnable` and `Thread`)?  
