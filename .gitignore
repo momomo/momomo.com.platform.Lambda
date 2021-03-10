@@ -1,7 +1,8 @@
 resources/rebel.xml
 assets
 target
-mmm.platform.Lambda.iml
+*.iml
+.idea
 pom.mocp
 pom.xml
 readme.notes.md

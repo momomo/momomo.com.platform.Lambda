@@ -1,4 +1,4 @@
-package momomo.com;
+package momomo;
 
 /**
  * This baggage file is required to avoid having to generate any java-doc, something sonatype insist on is required which is quite frankly an absurd requirement in order to share code.
@@ -19,4 +19,4 @@ package momomo.com;
  *
  * @author Joseph S.
  **/
-final class baggage { private baggage(){}}
+final class baggage { private baggage(){} }

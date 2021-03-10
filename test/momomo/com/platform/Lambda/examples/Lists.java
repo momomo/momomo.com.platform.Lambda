@@ -1,6 +1,6 @@
 package momomo.com.platform.Lambda.examples;
 
-import momomo.com.platform.Lambda.Lambda;
+import momomo.com.Lambda;
 
 import java.util.ArrayList;
 import java.util.List;
