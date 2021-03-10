@@ -22,7 +22,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.Lambda</artifactId>
-  <version>2.0.6</version>
+  <version>3.1.2</version>
 </dependency>                                                      
 ```                         
 ##### Repository
