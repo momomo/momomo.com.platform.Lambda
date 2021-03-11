@@ -33,7 +33,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 </repository>
 ```
 
-#### [Lambda.java](src/momomo/com/platform/Lambda/Lambda.java)
+#### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation through comments are provided within the class itself. 
 
 #### Examples:  
