@@ -73,14 +73,3 @@ Send an email to `opensource{at}momomo.com` if you would like to contribute in a
 
 #### Pipeline
 Adding `E[2-5]` as well, to allow for more defined exception types, in cases where multiple exceptions are thrown from Lambda. Normally this would be handled by throwing the least common `Exception` denominator but this is not always ideal.      
-
-#### Coming soon
-* ###### momomo.com.platform.IO
-* ###### momomo.com.platform.Stateful
-* ###### momomo.com.platform.Jedison
-* ###### momomo.com.platform.Transactional
-* ###### momomo.com.platform.Transactional.Hibernate
-* ###### momomo.com.platform.Transactional.Spring
-* ###### momomo.com.platform.MoEV
-* ###### m.bash.sh     
-* ###### MoVC.js
