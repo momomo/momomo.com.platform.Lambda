@@ -1,4 +1,4 @@
-## momomo.com.plaform.Lambda
+## momomo.com.platform.Lambda
 
 ##### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
  
