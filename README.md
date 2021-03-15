@@ -1,6 +1,6 @@
 ## momomo.com.platform.Lambda
 
-#### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
+###### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
  
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
 
@@ -16,7 +16,7 @@ Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, re
 
 A great number of libraries has been built on top of this intuitive naming strategy.
 
-#### Maven dependency available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
+#### Maven dependencies available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
 ##### Dependency   
 ```xml
 <dependency>
@@ -32,6 +32,14 @@ A great number of libraries has been built on top of this intuitive naming strat
     <url>http://repo1.maven.org/maven2</url>
 </repository>
 ```
+
+##### Our other GitHub repositories
+
+* [momomo.com.platform.Core](https://github.com/momomo/momomo.com.platform.Lambda)  
+Is essentially what makes the Core of several of momomo.com's public releases and contains a bunch of `Java` utility. 
+
+* [momomo.com.platform.Nanotime](https://github.com/momomo/momomo.com.platform.Nanotime)  
+Allows for nanosecond precision when asking for time from Java Runtime than standard `System.currentTimeMillis()`.
 
 ### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation through comments are provided within the class itself. 
