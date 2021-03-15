@@ -2,7 +2,9 @@
 
 #### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
  
-Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? Can you keep track of them? Can you easily convert one to another?   
+Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Even if you do know them, and able to easily keep track of them, do you find them limiting? 
+
+Can you keep track of them? Can you easily convert or go from one to the other as you pass things around in methods?   
 
 With this library, you can refer to: 
 * `Lambda.V1` &nbsp; for a void lambda that takes *1* generic parameter.
