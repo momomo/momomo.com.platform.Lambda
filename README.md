@@ -1,6 +1,6 @@
 ## momomo.com.platform.Lambda
 
-##### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
+### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
  
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? Can you keep track of them? Can you easily convert one to another?   
 
@@ -16,8 +16,8 @@ Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, re
 
 A great number of libraries has been built on top of this intuitive naming strategy.
 
-#### Maven dependency available on maven central (search.maven.org)
-##### Dependency   
+### Maven dependency available on maven central (search.maven.org)
+#### Dependency   
 ```
 <dependency>
   <groupId>com.momomo</groupId>
@@ -25,7 +25,7 @@ A great number of libraries has been built on top of this intuitive naming strat
   <version>3.1.4</version>
 </dependency>                                                      
 ```                         
-##### Repository
+#### Repository
 ```
 <repository>
     <id>maven-central</id>
@@ -33,7 +33,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 </repository>
 ```
 
-#### [Lambda.java](src/momomo/com/Lambda.java)
+### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation through comments are provided within the class itself. 
 
 #### Examples:  
@@ -47,7 +47,7 @@ Documentation through comments are provided within the class itself.
     [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
 
 
-#### Recommendation
+### Recommendation
 * Since a `Lambda.V extends Lambda.VE<RuntimeException>` we recommend that you always try to use a `throw` capable Lambda for your declared methods which ultimately depends on intetions like if you want `lambda.call()` to **bubble** non `RuntimeExceptions` or if you want to force the handlement of `exception` inside the lambda body (think `Runnable` and `Thread`)?  
 This way, you have the option to handle any exception in the Lambda body, as well as being able to simply throw it. 
 
@@ -56,7 +56,7 @@ This way, you have the option to handle any exception in the Lambda body, as wel
   
 * For your base methods, try to use an `R` lambda with `E` whenever possible, such as `Lambda.R[1-5]E`. This is versitale and would allow you to add delegating methods of most flavours more easily.
 
-#### Other
+### Other
 * A `Lambda.R1` can be automatically and safely converted to to any `Lambda.R2` -`Lambda.R5` as well as `Lambda.V1` - `Lambda.V5` and there are **util methods** for these things. A `Lambda.R5` can not be safely converted to a `Lambda.R4` since the body in `Lambda.R5` expects 5 params and converting it to `Lambda.R4` would leave at least one `null`. 
   To make conversions from `Lambda.R5` to `Lambda.R4` or `Lambda.V4` you would have to do it manually.
   
@@ -68,8 +68,8 @@ This way, you have the option to handle any exception in the Lambda body, as wel
 
 * We have two namespaces, `Lambda` and `Closure` and can be used interoperable. The default namespace is `Lambda` so you could do `Lambda.V1<String>`, or `Lambda.R1<Boolean, String>`. But since the Lambda namespace is sometimes difficult to complete (*intellij*) due to its wide use, you could instead do `Closure.V1`       
 
-#### Contribute
+### Contribute
 Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and/or ideas on things to improve.
 
-#### Pipeline
+### Pipeline
 Adding `E[2-5]` as well, to allow for more defined exception types, in cases where multiple exceptions are thrown from Lambda. Normally this would be handled by throwing the least common `Exception` denominator but this is not always ideal.      
