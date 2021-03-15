@@ -1,6 +1,9 @@
+<!---
+-->
+
 ## momomo.com.platform.Lambda
 
-###### Intuitive generics based functional interfaces with support for void, returns, multiple params & exceptions
+###### Intuitive generics based functional interfaces with support for void, returns, multiple params and exceptions.
  
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
 
@@ -44,7 +47,7 @@ Allows for nanosecond precision when asking for time from Java Runtime than stan
 ### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation through comments are provided within the class itself. 
 
-#### Examples  
+###### Examples  
 
 * [IO.java](test/momomo/com/platform/Lambda/examples/IO.java)
 
@@ -53,7 +56,6 @@ Documentation through comments are provided within the class itself.
 * [Lists.java](test/momomo/com/platform/Lambda/examples/Lists.java)
 
     [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
-
 
 ### Recommendations
 * Since a `Lambda.V extends Lambda.VE<RuntimeException>` we recommend that you always try to use a `throw` capable Lambda for your declared methods which ultimately depends on intetions like if you want `lambda.call()` to **bubble** non `RuntimeExceptions` or if you want to force the handlement of `exception` inside the lambda body (think `Runnable` and `Thread`)?  
