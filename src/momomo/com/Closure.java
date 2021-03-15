@@ -3,18 +3,17 @@
  
  Copyrightⓒ 2014-2021, Momomo LTD. All rights reserved.                                                                             
  
- (1) Use of this source code, wether identical, changed or altered is allowed, for commercial and non-commercial use.                
+ (1) Use of this source code, wether identical, changed or altered is allowed, for commercial as well as non-commercial use.                
  
- (2) This source code may be changed and altered freely to be used only within your entity/organisation, given that a notice of all  
- changes introduced must listed and included at the end of an exact copy of this notice, including the date and name of the      
- entity/organization that introduced them.                                                                                       
+ (2) This source code may be changed and altered freely to be used only within the entity/organisation that introduced them, 
+ provided that a notice of all changes introduced must be listed and included at the end of an exact copy of this notice, 
+ including the date and name of the person, entity and/or organization that introduced them.                                                                                       
  
- (3) The redistribution and/or publication of this source code to the public, if changed or altered, is prohibited using any         
- medium not priorly approved by Momomo LTD unless a written consent has been requested and recieved by authorized                
- representatives of Momomo LTD.                                                                                                  
+ (3) The redistribution and/or publication of this source code, if changed or altered, is prohibited using any medium not priorly 
+ approved by Momomo LTD unless a written consent has been requested and recieved by authorized representatives of Momomo LTD. 
  
- (4) The distribution of any work derived through the use of this source code, wether identical, changed or altered,                 
- is however allowed, as long as such distribution does not contradict (3).                                                       
+ (4) The distribution of any work derived through the use of this source code, wether identical, changed or altered, is however allowed, 
+ as long as such distribution does not contradict (3) in any way.                                                       
  
  (5) Momomo LTD considers the techniques, design patterns, the naming, naming combinations, used and employed in the source as      
  unique and copyright protected where the redistribution of this source code using altered names, and/or rearranging and/or     
