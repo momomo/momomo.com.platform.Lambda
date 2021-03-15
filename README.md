@@ -16,8 +16,8 @@ Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, re
 
 A great number of libraries has been built on top of this intuitive naming strategy.
 
-### Maven dependency available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
-#### Dependency   
+#### Maven dependency available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
+##### Dependency   
 ```xml
 <dependency>
   <groupId>com.momomo</groupId>
@@ -25,7 +25,7 @@ A great number of libraries has been built on top of this intuitive naming strat
   <version>3.1.4</version>
 </dependency>                                                      
 ```                         
-#### Repository
+##### Repository
 ```xml
 <repository>
     <id>maven-central</id>
