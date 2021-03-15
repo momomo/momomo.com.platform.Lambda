@@ -18,7 +18,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 
 ### Maven dependency available on maven central (search.maven.org)
 #### Dependency   
-```
+```xml
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.Lambda</artifactId>
@@ -26,7 +26,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 </dependency>                                                      
 ```                         
 #### Repository
-```
+```xml
 <repository>
     <id>maven-central</id>
     <url>http://repo1.maven.org/maven2</url>
