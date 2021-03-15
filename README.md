@@ -33,7 +33,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 </repository>
 ```
 
-##### Our other GitHub repositories
+##### Our other repositories
 
 * [momomo.com.platform.Core](https://github.com/momomo/momomo.com.platform.Lambda)  
 Is essentially what makes the Core of several of momomo.com's public releases and contains a bunch of `Java` utility. 
