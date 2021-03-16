@@ -4,22 +4,8 @@
 ## momomo.com.platform.Lambda
 
 ###### Intuitive generics based functional interfaces with support for void, returns, multiple params and exceptions.
- 
-Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
 
-With this `interface` based library, you can use: 
-* `Lambda.V1` &nbsp; for a void lambda that takes *1* generic parameter.
-* `Lambda.V2` &nbsp; for a void lambda that takes *2* generic parameters.
-* `Lambda.R1` &nbsp; for a returning lambda that has a defined `return` type and takes *1* generic parameter.
-* `Lambda.R2E`&nbsp;for a returning lambda that has a defined `return` type and takes *2* generic parameters, and allows you to define the `thrown exception` type as well.
-* ... ***many more*** ... 
- 
-Also, going from `Lambda.R2E` to a `Lambda.V2E`, is as easy as calling `lambda.V2E()` by ignoring the return value. 
-Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, returning null instead which is fine if `lambda.call()` handles null returns properly. 
-
-A great number of libraries has been built on top of this intuitive naming strategy.
-
-#### Maven dependencies available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
+##### Maven dependencies available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
 ##### Dependency   
 ```xml
 <dependency>
@@ -42,9 +28,25 @@ A great number of libraries has been built on top of this intuitive naming strat
 Is essentially what makes the Core of several of momomo.com's public releases and contains a bunch of `Java` utility. 
 
 * [momomo.com.platform.Nanotime](https://github.com/momomo/momomo.com.platform.Nanotime)  
-Allows for nanosecond precision when asking for time from Java Runtime than standard `System.currentTimeMillis()`.
+Allows for nanosecond time resolution when asking for time from Java Runtime in contrast with `System.currentTimeMillis()`.
 
-### [Lambda.java](src/momomo/com/Lambda.java)
+### Info
+ 
+Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
+
+With this `interface` based library, you can use: 
+* `Lambda.V1` &nbsp; for a void lambda that takes *1* generic parameter.
+* `Lambda.V2` &nbsp; for a void lambda that takes *2* generic parameters.
+* `Lambda.R1` &nbsp; for a returning lambda that has a defined `return` type and takes *1* generic parameter.
+* `Lambda.R2E`&nbsp;for a returning lambda that has a defined `return` type and takes *2* generic parameters, and allows you to define the `thrown exception` type as well.
+* ... ***many more*** ... 
+ 
+Also, going from `Lambda.R2E` to a `Lambda.V2E`, is as easy as calling `lambda.V2E()` by ignoring the return value. 
+Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, returning null instead which is fine if `lambda.call()` handles null returns properly. 
+
+A great number of libraries has been built on top of this intuitive naming strategy.
+
+#### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation through comments are provided within the class itself. 
 
 ###### Examples  
