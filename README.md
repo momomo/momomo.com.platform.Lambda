@@ -24,10 +24,10 @@
 
 ##### Our other repositories
 
-* [momomo.com.platform.Core](https://github.com/momomo/momomo.com.platform.Lambda)  
-Is essentially what makes the Core of several of momomo.com's public releases and contains a bunch of `Java` utility. 
+* [`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Lambda)  
+Is essentially what makes the our the core of several of momomo.com's public releases and contains a bunch of `Java` utility.
 
-* [momomo.com.platform.Nanotime](https://github.com/momomo/momomo.com.platform.Nanotime)  
+* [`momomo.com.platform.Nanotime`](https://github.com/momomo/momomo.com.platform.Nanotime)  
 Allows for nanosecond time resolution when asking for time from Java Runtime in contrast with `System.currentTimeMillis()`.
 
 ### Info
