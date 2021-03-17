@@ -46,16 +46,18 @@ Going from `Lambda.V2E` to `Lambda.R2E` is also possible with a small caveat, re
 
 A great number of libraries has been built on top of this intuitive naming strategy.
 
+### Guide
+
 #### [Lambda.java](src/momomo/com/Lambda.java)
-Documentation through comments are provided within the class itself. 
+Documentation is provided through comments within the class itself. We recommend you start try to use it, and you will immediately figure out its use. 
 
-###### Examples  
+### Example   
 
-* [IO.java](test/momomo/com/platform/Lambda/examples/IO.java)
+* [`examples/IO.java`](test/momomo/com/platform/Lambda/examples/IO.java)
 
   [![IO.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
 
-* [Lists.java](test/momomo/com/platform/Lambda/examples/Lists.java)
+* [`examples/Lists.java`](test/momomo/com/platform/Lambda/examples/Lists.java)
 
     [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
 
