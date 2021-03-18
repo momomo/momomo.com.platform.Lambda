@@ -51,6 +51,10 @@ A great number of libraries has been built on top of this intuitive naming strat
 #### [Lambda.java](src/momomo/com/Lambda.java)
 Documentation is provided through comments within the class itself. We recommend you start try to use it, and you will immediately figure out its use. 
 
+* Nice compact, partial view from Intellij: 
+  
+  [![Lambda.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.signatures.2021.04.18.v1.jpg?raw=true)](src/momomo/com/Lambda.java)
+
 ### Example   
 
 * [`examples/IO.java`](test/momomo/com/platform/Lambda/examples/IO.java)
