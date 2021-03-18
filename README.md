@@ -11,7 +11,7 @@
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.Lambda</artifactId>
-  <version>3.1.5</version>
+  <version>3.1.6</version>
 </dependency>                                                      
 ```                         
 ##### Repository
