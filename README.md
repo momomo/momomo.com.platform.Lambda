@@ -33,6 +33,9 @@ An intuitive library that allows you to return multiple return values with defin
 * [`momomo.com.platform.Nanotime`](https://github.com/momomo/momomo.com.platform.Nanotime)  
 Allows for nanosecond time resolution when asking for time from Java Runtime in contrast with `System.currentTimeMillis()`.
 
+* [`momomo.com.platform.db.transactional.Hibernate`](https://github.com/momomo/momomo.com.platform.db.transactional.Hibernate)  
+A library to execute database command in transactions without having to use annotations based on Hibernate libraries. No Spring!
+
 ### Background
  
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
