@@ -90,7 +90,8 @@ This way, you have the option to handle any exception in the Lambda body, as wel
   
   As an example, `Lambda.V extends Runnable` with `run()` implemented to delegate to `call()`, `Lambda.R<R> extends Supplier<R>` with `get()` implemented to delegate to `return call()`, `Lambda.R1<R,P> extends Function<P, R>` with `apply(P param)` implemented to delegate to `return call(param)` and so forth.
 
-* We have two namespaces, `Lambda` and `Closure` and can be used interoperable. The default namespace is `Lambda` so you could do `Lambda.V1<String>`, or `Lambda.R1<Boolean, String>`. But since the Lambda namespace is sometimes difficult to complete (*intellij*) due to its wide use, you could instead do `Closure.V1`       
+* We have two namespaces, `Lambda` and `Closure` and can be used interoperable. The default namespace is `Lambda` so you could do `Lambda.V1<String>`, or `Lambda.R1<Boolean, String>`. But since the Lambda namespace is sometimes difficult to complete (*intellij*) due to its wide use, you could instead do `Closure.V1`.  
+`Closure.V1` == `Lambda.V1`, `Closure.R2E` is the same as `Lambda.R2E`, it just access to it is provided though another class.         
 
 ### Contribute
 Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and/or ideas on things to improve.
