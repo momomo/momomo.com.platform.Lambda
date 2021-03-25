@@ -1,7 +1,7 @@
 <!---
 -->
 
-###### Intuitive generics based functional interfaces with support for void, returns, multiple params and exceptions.
+##### Intuitive generics based functional interfaces with support for void, returns, multiple params and exceptions.
 
 ##### Maven dependencies available on maven central [search.maven.org](https://search.maven.org/search?q=com.momomo)
 ##### Dependency   
