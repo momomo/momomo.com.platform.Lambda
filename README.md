@@ -26,7 +26,7 @@
 ##### Our other repositories                          
 
 * **[`momomo.com.platform.Core`](https://github.com/momomo/momomo.com.platform.Core)**  
-Is essentially what makes the our the core of several of momomo.com's public releases and contains a bunch of `Java` utility.
+Is essentially what makes the our the core of several of momomo.com's public releases and contains a bunch of Java utility.
 
 * **[`momomo.com.platform.Return`](https://github.com/momomo/momomo.com.platform.Return)**  
 An intuitive library that allows you to return multiple return values with defined types on the fly from any method rather than being limited to the default maximum of one.
