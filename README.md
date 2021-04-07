@@ -42,15 +42,13 @@ A library to execute database command in transactions without having to use anno
 
 ### Background
  
-Ever confused by names like `Supplier`, `Function`, `BiFunction`, `Consumer`, ... and so forth? 
+Ever confused by names like `Supplier`, `Function`, `BiFunction`, `Consumer`, ... and so forth?  *Do you find them limiting?* 
 
-*Do you find them limited?* 
-
-Are you easily **able** to keep track of them? Can your brain **map** them quickly enough when scanning method signatures?  
+Are you easily **able** to keep track of them? Can your brain **parse** them quickly enough when scanning method signatures?  
 
 Can you easily **convert** and/or go from one method to another?   
 
-With this **`interface`** based library, where a *great number of libraries* has been built on top of this ***intuitive naming strategy*** you can use: 
+With this ***intuitive*** **`interface`** based ***naming strategy*** you can use: 
 * **`Lambda.R`** &nbsp;&nbsp; for a *`return`* lambda with defined **`return`** type that takes **`0`** defined parameters. *Implements `Supplier<Return>`*
 * **`Lambda.R1`** &nbsp; for a *`return`* lambda with defined **`return`** type that takes **`1`** defined parameter. *Implements `Function<Param1, Return>`*.
 * **`Lambda.R2`** &nbsp; for a *`return`* lambda with defined **`return`** type that takes **`2`** defined parameter. *Implements `BiFunction<Param1, Param2, Return>`*.
@@ -67,7 +65,7 @@ With this **`interface`** based library, where a *great number of libraries* has
  which are commented in the source code of **[`Lambda.java`](src/momomo/com/Lambda.java)**.
  
  With this library you can also safely: 
- * Go from **`Lambda.R1E`** to a **`Lambda.V1E`** by simply calling **`lambda.V1E()`** where we ignore making use of the **return** value for the desired `void` lambda.  
+ * Go from **`Lambda.R1E`** to a **`Lambda.V1E`** by simply calling **`lambda.V1E()`** where we ignore making use of the **`return`** value for the desired `void` lambda.  
  * Go from **`Lambda.V1E`** to a **`Lambda.R1E`** by also simply calling **`lambda.R1E()`** but comes with a small caveat where we **`return null`** instead which is fine as long as the invoker of the **`lambda.call()`** handles **`return null`** properly. 
  * Go from **`R`** to **`R1`**, **`R1E`**, **`R2`**, **`R2E`**, **`R3`**, **`R3E`**, **`R4`**, **`R4E`**, **`R5`**, **`R5E`** by simply calling the method with the same name, such as **`lambda.R4E()`**. 
  * ... 
