@@ -14,12 +14,12 @@ class Lists {
     private Lists(){}
     
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Peter");
-        list.add("Anders");
-        list.add("Sven");
-        list.add("Hanna");
-        list.add("Anna");
+        ArrayList<String> list = new ArrayList<>(); list.add("Peter"); list.add("Anders"); list.add("Sven"); list.add("Hanna"); 
+    
+        // We ignore the use of the index passing only a V1
+        each(list, name -> {
+            System.out.println("We have " + name + " and not using an index!" );
+        });
     
         // Iterate list and output index and name, passing a V2E
         each(list, (name, index) -> {
@@ -36,11 +36,6 @@ class Lists {
                 return false;
             }
             return true;
-        });
-        
-        // We ignore the use of the index passing only a V1
-        each(list, name -> {
-            System.out.println("We have " + name + " and not using an index!" );
         });
     }
     

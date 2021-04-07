@@ -42,9 +42,15 @@ A library to execute database command in transactions without having to use anno
 
 ### Background
  
-Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
+Ever confused by names like `Supplier`, `Function`, `BiFunction`, `Consumer`, ... and so forth? 
 
-With this **`interface`** based library, you can use: 
+*Do you find them limited?* 
+
+Are you easily **able** to keep track of them? Can your brain **map** them quickly enough when scanning method signatures?  
+
+Can you easily **convert** and/or go from one method to another?   
+
+With this **`interface`** based library, where a *great number of libraries* has been built on top of this ***intuitive naming strategy*** you can use: 
 * **`Lambda.R`** &nbsp;&nbsp; for a *`return`* lambda with defined **`return`** type that takes **`0`** defined parameters. *Implements `Supplier<Return>`*
 * **`Lambda.R1`** &nbsp; for a *`return`* lambda with defined **`return`** type that takes **`1`** defined parameter. *Implements `Function<Param1, Return>`*.
 * **`Lambda.R2`** &nbsp; for a *`return`* lambda with defined **`return`** type that takes **`2`** defined parameter. *Implements `BiFunction<Param1, Param2, Return>`*.
@@ -55,25 +61,24 @@ With this **`interface`** based library, you can use:
 * **`Lambda.V2`** &nbsp; for a *`void`* lambda that takes **`2`** defined parameters. *Implements `BiConsumer<Param1>`*.
 * **`Lambda.V2E`** for a *`void`* lambda that takes **`2`** defined parameters, *and* allows you to **define** the **thrown exception type** as well.
 * ...
-* Also take a look at **`Lambda.OO`**, **`Lambda.OOE`**, **`Lambda.RO`**, **`Lambda.ROE`**, **`Lambda.RP`**, **`Lambda.RPE`**, **`Lambda.VO`** and **`Lambda.VOE`**, **`Lambda.VP`** and **`Lambda.VPE`** which are commented in the source code of **[`Lambda.java`](src/momomo/com/Lambda.java)**.   
+* Also take a look at less common use `varargs` based  
+&nbsp; &nbsp; &nbsp; &nbsp; **[`Lambda.RP`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L943)**, **[`Lambda.RPE`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L959)**, **[`Lambda.RO`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L999)**, **[`Lambda.ROE`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L1013)**, **[`Lambda.OO`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L1036)**, **[`Lambda.OOE`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L1045)**   
+&nbsp; &nbsp; &nbsp; &nbsp; **[`Lambda.VP`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L2379)**, **[`Lambda.VPE`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L2401)**, **[`Lambda.VO`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L2442)**, **[`Lambda.VOE`](https://github.com/momomo/momomo.com.platform.Lambda/blob/master/src/momomo/com/Lambda.java#L2464)**  
+ which are commented in the source code of **[`Lambda.java`](src/momomo/com/Lambda.java)**.
  
-Furthermore. 
+ With this library you can also safely: 
+ * Go from **`Lambda.R1E`** to a **`Lambda.V1E`** by simply calling **`lambda.V1E()`** where we ignore making use of the **return** value for the desired `void` lambda.  
+ * Go from **`Lambda.V1E`** to a **`Lambda.R1E`** by also simply calling **`lambda.R1E()`** but comes with a small caveat where we **`return null`** instead which is fine as long as the invoker of the **`lambda.call()`** handles **`return null`** properly. 
+ * Go from **`R`** to **`R1`**, **`R1E`**, **`R2`**, **`R2E`**, **`R3`**, **`R3E`**, **`R4`**, **`R4E`**, **`R5`**, **`R5E`** by simply calling the method with the same name, such as **`lambda.R4E()`**. 
+ * ... 
 
-Going from **`Lambda.R2E`** to a **`Lambda.V2E`** is as easy as calling **`lambda.V2E()`** where we ignore making use of **return** value.  
-Going from **`Lambda.V2E`** to a **`Lambda.R2E`** is also possible using **`lambda.R2E()`** and comes with a small caveat where we **`return null`** instead which is fine as long as invoker of **`lambda.call()`** handles **`null`** return values properly. 
+Documentation is provided through comments within the class itself and we recommend you start try to use it, and you will immediately figure out its use. 
 
-A great number of libraries has been built on top of this intuitive naming strategy.
-
-### Guide
-
-#### [`Lambda.java`](src/momomo/com/Lambda.java)
-Documentation is provided through comments within the class itself. We recommend you start try to use it, and you will immediately figure out its use. 
-
-* Nice compact, partial view over signatures from Intellij: 
+* Nice compact, partial view over signatures from Intellij over **[`Lambda.java`](src/momomo/com/Lambda.java)**: 
   
   [![Lambda.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.signatures.2021.04.18.v1.jpg?raw=true)](src/momomo/com/Lambda.java)
 
-### Example   
+### Examples   
 
 * ***[`examples/IO.java`](test/momomo/com/platform/Lambda/examples/IO.java)***
 
@@ -84,7 +89,7 @@ Documentation is provided through comments within the class itself. We recommend
     [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
 
 ### Recommendation
-* Since a **`Lambda.V extends Lambda.VE<RuntimeException>`** we recommend that you always try to use a **`throw`** capable Lambda for your declared methods which ultimately depends on intetions like if you want **`lambda.call()`** to **bubble** non **`RuntimeExceptions`** or if you want to force the handlement of **`exception`** inside the lambda body (think **`Runnable`** and **`Thread`**)?  
+* Since a **`Lambda.V extends Lambda.VE<RuntimeException>`**, **`Lambda.R extends Lambda.RE<RuntimeException>`**, **`Lambda.V1<P1> extends Lambda.V1E<P1, RuntimeException>`** we recommend that you always try to use a **`throw`** capable Lambda for your declared methods which ultimately depends on intetions like if you want **`lambda.call()`** to **bubble** non **`RuntimeExceptions`** or if you want to force the handlement of **`exception`** inside the lambda body (think **`Runnable`** and **`Thread`**)?  
 This way, you have the option to handle any exception in the Lambda body, as well as being able to simply throw it. 
 
   Take the  the **`Runnable`** interface as an example where you normally, if you say read from a file which would throw an IO**`Exception`** by default you would be forced to handle that exception. 
