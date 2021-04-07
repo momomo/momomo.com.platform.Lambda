@@ -12,7 +12,7 @@
 <dependency>
   <groupId>com.momomo</groupId>
   <artifactId>momomo.com.platform.Lambda</artifactId>
-  <version>3.1.7</version>
+  <version>3.1.8</version>
 </dependency>                                                      
 ```                         
 ##### Repository
