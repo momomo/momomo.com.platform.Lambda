@@ -60,7 +60,7 @@ A great number of libraries has been built on top of this intuitive naming strat
 
 ### Guide
 
-#### [Lambda.java](src/momomo/com/Lambda.java)
+#### [`Lambda.java`](src/momomo/com/Lambda.java)
 Documentation is provided through comments within the class itself. We recommend you start try to use it, and you will immediately figure out its use. 
 
 * Nice compact, partial view over signatures from Intellij: 
