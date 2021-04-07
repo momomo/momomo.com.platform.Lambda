@@ -103,6 +103,6 @@ This way, you have the option to handle any exception in the Lambda body, as wel
 Send an email to `opensource{at}momomo.com` if you would like to contribute in any way, make changes or otherwise have thoughts and/or ideas on things to improve.
 
 ### Pipeline
-* Add **`V[6-10]`**, **`VE[6-10]`**, **`R[6-10]`**, **`RE[6-10]`** as well to cover all sceptics out there thinking they will ever need more than **`5`**.
+* Add **`E[2-5]`** as well to allow for more defined exception types, in cases where multiple exception types are thrown from **`Lambda`**. Normally this would be handled by throwing the least common **`Exception`** denominator but this is not always ideal to do.
 
-* Add **`E[2-5]`** as well, to allow for more defined exception types, in cases where multiple exceptions are thrown from Lambda. Normally this would be handled by throwing the least common **`Exception`** denominator but this is not always ideal.       
+* Add **`V[6-10]`**, **`VE[6-10]`**, **`R[6-10]`**, **`RE[6-10]`** as well to cover all sceptics out there thinking they will ever need more than **`5`**.       
