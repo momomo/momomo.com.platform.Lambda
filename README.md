@@ -55,7 +55,7 @@ With this **`interface`** based library, you can use:
 * **`Lambda.V2`** &nbsp; for a *`void`* lambda that takes **`2`** defined parameters. *Implements `BiConsumer<Param1>`*.
 * **`Lambda.V2E`** for a *`void`* lambda that takes **`2`** defined parameters, *and* allows you to **define** the **thrown exception type** as well.
 * ...
-* Also take a look at **`Lambda.OO`**, **`Lambda.OOE`**, **`Lambda.RO`**, **`Lambda.ROE`**, **`Lambda.VO`** and **`Lambda.VOE`** which are commented in the code.   
+* Also take a look at **`Lambda.OO`**, **`Lambda.OOE`**, **`Lambda.RO`**, **`Lambda.ROE`**, **`Lambda.VO`** and **`Lambda.VOE`** which are commented in the source code of **[`Lambda.java`](src/momomo/com/Lambda.java)**.   
  
 Furthermore. 
 
