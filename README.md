@@ -45,10 +45,12 @@ A library to execute database command in transactions without having to use anno
 Ever confused by names like `Supplier`, `Function`, `BiFunction`, and so forth? Do you find them limiting? **Able** to keep track of them? Can your brain really **map** them quickly enough when scanning method signatures? Can you easily **convert** or go from one method to another?   
 
 With this **`interface`** based library, you can use: 
+* **`Lambda.V`** &nbsp; &nbsp;for a *`void`* &nbsp;&nbsp;&nbsp;lambda that takes **`0`** defined parameters. Implements **`Runnable`**.
 * **`Lambda.V1`** &nbsp; for a *`void`* &nbsp;&nbsp;&nbsp;lambda that takes **`1`** defined parameter.
 * **`Lambda.V2`** &nbsp; for a *`void`* &nbsp;&nbsp;&nbsp;lambda that takes **`2`** defined parameters.
-* **`Lambda.R1`** &nbsp; for a *`return`* lambda with defined **`return`** type and takes **`1`** defined parameter.
-* **`Lambda.R2E`**&nbsp; for a *`return`* lambda with defined **`return`** type and takes **`2`** defined parameters, **and** allows you to define the **`thrown exception`** type as well.
+* **`Lambda.R`** &nbsp;&nbsp; for a *`return`* lambda with defined **`return`** type that takes **`0`** defined parameters. Implements **`Supplier<Return>`**.
+* **`Lambda.R1`** &nbsp; for a *`return`* lambda with defined **`return`** type that takes **`1`** defined parameter. Implements **`Function<Param, Return>`**.
+* **`Lambda.R2E`**&nbsp; for a *`return`* lambda with defined **`return`** type that takes **`2`** defined parameters, *and* allows you to **define** the **thrown exception type** as well. 
 * *... and so on ...* 
  
 Furthermore. 
@@ -94,7 +96,7 @@ This way, you have the option to handle any exception in the Lambda body, as wel
 
 * Whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `BiFunction`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
   
-  As an example, **`Lambda.V extends Runnable`** with **`run()`** implemented to delegate to **`call()`**, **`Lambda.R<R> extends Supplier<R>`** with **`get()`** implemented to delegate to **`return call()`**, **`Lambda.R1<R,P> extends Function<P, R>`** with **`apply(P param)`** implemented to delegate to **`return call(param)`** and so forth.
+  As an example, **`Lambda.V extends Runnable`** with **`run()`** implemented to delegate to **`call()`**, **`Lambda.R<R> extends Supplier<R>`** with **`get()`** implemented to delegate to **`return call()`**, **`Lambda.R1<R,P> extends Function<P, R>`** with **`apply(P param)`** implemented to delegate to **`return call(param)`** and so forth. This means you can opt to supply a Lambda.V
 
 * We have two namespaces, **`Lambda`** and **`Closure`** and can be used interoperable. The default namespace is **`Lambda`** so you could do **`Lambda.V1<String>`**, or **`Lambda.R1<Boolean, String>`**. But since the Lambda namespace is sometimes difficult to complete (*intellij*) due to its wide use, you could instead do **`Closure.V1`**.  
 **`Closure.V1`** == **`Lambda.V1`**, **`Closure.R2E`** is the same as **`Lambda.R2E`**, it just access to it is provided though another class.         
