@@ -2,7 +2,11 @@ package momomo.com.platform.Lambda.examples;
 
 import momomo.com.Lambda;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -15,10 +19,7 @@ import java.net.URLConnection;
  *
  * Parts taken from momomo.com.platform.IO package
  */
-class IO {
-    private IO(){}
-    
-    private static final int BUFFER = 8192;
+class IO { private IO(){}
     
     public static void main(String[] args) throws IOException {
         File file = new File("/path/to/some/file.txt");
@@ -47,16 +48,14 @@ class IO {
     /////////////////////////////////////////////////////////////////////
     // File
     /////////////////////////////////////////////////////////////////////
-    
+                                                                            
     /**
-     * @param file
      * @param lambda passes line only, iterates all
      */
     public static <E extends Exception> void eachLine(File file, Lambda.V1E<String, E> lambda) throws IOException, E {
         eachLine(file, lambda.R2E());
     }
     /**
-     * @param file
      * @param lambda passes line and line index, iterates all
      */
     public static <E extends Exception> void eachLine(File file, Lambda.V2E<String, Integer, E> lambda) throws IOException, E {
@@ -64,7 +63,6 @@ class IO {
     }
     
     /**
-     * @param file
      * @param lambda passes line only, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(File file, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
@@ -72,7 +70,6 @@ class IO {
     }
     
     /**
-     * @param file
      * @param lambda passes line and line index, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(File file, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
@@ -84,7 +81,6 @@ class IO {
     /////////////////////////////////////////////////////////////////////
     
     /**
-     * @param url
      * @param lambda passes line only, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(URL url, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
@@ -92,7 +88,6 @@ class IO {
     }
     
     /**
-     * @param url
      * @param lambda passes line and line index, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(URL url, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
@@ -106,7 +101,6 @@ class IO {
     /////////////////////////////////////////////////////////////////////
     
     /**
-     * @param inputStream
      * @param lambda passes line only, iterates all
      */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.V1E<String, E> lambda) throws IOException, E {
@@ -114,7 +108,6 @@ class IO {
     }
     
     /**
-     * @param inputStream
      * @param lambda passes line and line index, iterates all
      */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.V2E<String, Integer, E> lambda) throws IOException, E {
@@ -122,20 +115,16 @@ class IO {
     }
     
     /**
-     * @param inputStream
      * @param lambda passes line only, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R1E<Boolean, String, E> lambda) throws IOException, E {
-        eachLine(inputStream, (s, integer) -> {
-            return lambda.call(s);
-        });
+        eachLine(inputStream, lambda.R2E());
     }
     /**
-     * @param inputStream
      * @param lambda passes line and line index, return false to abort iteration anytime
      */
     public static <E extends Exception> void eachLine(InputStream inputStream, Lambda.R2E<Boolean, String, Integer, E> lambda) throws IOException, E {
-        try (InputStreamReader isr = new InputStreamReader(inputStream); BufferedReader bfr = new BufferedReader(isr, BUFFER) ) {
+        try (InputStreamReader isr = new InputStreamReader(inputStream); BufferedReader bfr = new BufferedReader(isr, 8192) ) {
             int i = 0; String line; while ( (line = bfr.readLine()) != null ) {
                 if ( Boolean.FALSE.equals(lambda.call(line, i++)) ) return;
             }

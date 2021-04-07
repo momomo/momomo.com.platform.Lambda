@@ -66,7 +66,7 @@ Documentation is provided through comments within the class itself. We recommend
 
 * [`examples/IO.java`](test/momomo/com/platform/Lambda/examples/IO.java)
 
-  [![IO.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.03.04.v2.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
+  [![IO.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.04.07.V1.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
 
 * [`examples/Lists.java`](test/momomo/com/platform/Lambda/examples/Lists.java)
 
