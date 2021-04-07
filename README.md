@@ -67,7 +67,7 @@ With this ***intuitive*** **`interface`** based ***naming strategy*** you can us
  With this library you can also safely: 
  * Go from **`Lambda.R1E`** to a **`Lambda.V1E`** by simply calling **`lambda.V1E()`** where we ignore making use of the **`return`** value for the desired `void` lambda.  
  * Go from **`Lambda.V1E`** to a **`Lambda.R1E`** by also simply calling **`lambda.R1E()`** but comes with a small caveat where we **`return null`** instead which is fine as long as the invoker of the **`lambda.call()`** handles **`return null`** properly. 
- * Go from **`R`** to **`R1`**, **`R1E`**, **`R2`**, **`R2E`**, **`R3`**, **`R3E`**, **`R4`**, **`R4E`**, **`R5`**, **`R5E`** by simply calling the method with the same name, such as **`lambda.R4E()`**. 
+ * Go from **`R`** to **`R1`**, **`R1E`**, **`R2`**, **`R2E`**, **`R3`**, **`R3E`**, **`R4`**, **`R4E`**, **`R5`**, **`R5E`** by simply calling the method with the same name, such as **`lambda.R4E()`**.
  * ... 
 
 Documentation is provided through comments within the class itself and we recommend you start try to use it, and you will immediately figure out its use. 
@@ -93,15 +93,15 @@ This way, you have the option to handle any exception in the Lambda body, as wel
   Take the  the **`Runnable`** interface as an example where you normally, if you say read from a file which would throw an IO**`Exception`** by default you would be forced to handle that exception. 
  However, using the **`Lambda`** interface, and calling a method that expects a throw capable **`Lambda`**, that lambda will automatically throw **`E`** if there are any by the caller of **`lambda.call()`**.     
   
-* For your base methods, try to use an **`R`** lambda with **`E`** whenever possible, such as **`Lambda.R[1-5]E`**. This is versitale and would allow you to add delegating methods of most flavours more easily.
+* For your base methods, try to use an **`R`** lambda with **`E`** whenever possible, such as **`Lambda.R[1-5]E`**. This is versitale and would allow you to add delegating methods of most flavours more easily. 
 
 ### Keep in mind
-* A **`Lambda.R1`** can be automatically and safely converted to to any **`Lambda.R2`** -**`Lambda.R5`** as well as **`Lambda.V1`** - **`Lambda.V5`** and there are **util methods** for these things. A **`Lambda.R5`** can not be safely converted to a **`Lambda.R4`** since the body in **`Lambda.R5`** expects 5 params and converting it to **`Lambda.R4`** would leave at least one **`null`**. 
+* A **`Lambda.R`** can automatically and safely be converted to to any **`Lambda.R1`** -**`Lambda.R5`** as well as **`Lambda.V`** - **`Lambda.V5`** and there are **util methods** for these things. A **`Lambda.R5`** can not be safely converted to a **`Lambda.R4`** since the body in **`Lambda.R5`** expects 5 params and converting it to **`Lambda.R4`** would leave at least one **`null`**.   
   To make conversions from **`Lambda.R5`** to **`Lambda.R4`** or **`Lambda.V4`** you would have to do it manually.
   
-  On a similar note, **`Lambda.V1`** can be converted to a **`Lambda.R1`** and there are **util methods** for that. This is achieved by simply returning null, which is always possible even when supplying a **`Lambda.R1`** to begin with. Therefore the **`lambda.call()`** should be able to handle **`null`** **`return`**.      
+  On a similar note, **`Lambda.V1`** can be converted to a **`Lambda.R1`** and there are **util methods** for that. This is achieved by simply returning null, which is always possible even when supplying a **`Lambda.R1`** to begin with. Therefore the **`lambda.call()`** should handle **`return null`**.      
 
-* Whenever possible, the interfaces implement equivalent interfaces such as `Consumer`, `BiConsumer`, `Function`, `BiFunction`, `Supplier`, `Runnable` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
+* Whenever possible, the interfaces implement equivalent interfaces such as `Runnable`, `Consumer`, `BiConsumer`, `Function`, `BiFunction`, `Supplier` and can thus be used and fed to methods expecting those allowing you to stick with using this consistent naming pattern.
   
   As an example, **`Lambda.V extends Runnable`** with **`run()`** implemented to delegate to **`call()`**, **`Lambda.R<R> extends Supplier<R>`** with **`get()`** implemented to delegate to **`return call()`**, **`Lambda.R1<R,P> extends Function<P, R>`** with **`apply(P param)`** implemented to delegate to **`return call(param)`** and so forth. This means you can opt to supply a Lambda.V
 
