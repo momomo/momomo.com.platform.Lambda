@@ -86,7 +86,7 @@ Documentation is provided through comments within the class itself and we recomm
 This way, you have the option to handle any exception in the Lambda body, as well as being able to simply throw it. 
 
   Take the  the `Runnable` interface as an example where you normally, if you say read from a file which would throw an **`IOException`** by default you would be forced to handle that exception. 
- However, using the `Lambda` interface, and calling a method that expects a throw capable **`Lambda`**, that lambda will automatically throw **`E`** if there are any by the caller of **`lambda.call()`**.     
+ However, using the **`Lambda`** interface, and calling a method that expects a throw capable **`Lambda`**, that lambda will automatically throw **`E`** if there are any by the caller of **`lambda.call()`**.     
   
 * For your base methods, try to use an **`R`** lambda with **`E`** whenever possible, such as **`Lambda.R[1-5]E`**. This is versitale and would allow you to add delegating methods of most flavours more easily. 
 
