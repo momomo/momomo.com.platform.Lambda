@@ -85,7 +85,7 @@ Documentation is provided through comments within the class itself and we recomm
 * Since a **`Lambda.V extends Lambda.VE<RuntimeException>`**, **`Lambda.R extends Lambda.RE<RuntimeException>`**, **`Lambda.V1<P1> extends Lambda.V1E<P1, RuntimeException>`** we recommend that you always try to use a **`throw`** capable Lambda for your declared methods which ultimately depends on intetions like if you want **`lambda.call()`** to **bubble** non **`RuntimeExceptions`** or if you want to force the handlement of **`exception`** inside the lambda body (think **`Runnable`** and **`Thread`**)?  
 This way, you have the option to handle any exception in the Lambda body, as well as being able to simply throw it. 
 
-  Take the  the **`Runnable`** interface as an example where you normally, if you say read from a file which would throw an IO**`Exception`** by default you would be forced to handle that exception. 
+  Take the  the **`Runnable`** interface as an example where you normally, if you say read from a file which would throw an **`IOException`** by default you would be forced to handle that exception. 
  However, using the **`Lambda`** interface, and calling a method that expects a throw capable **`Lambda`**, that lambda will automatically throw **`E`** if there are any by the caller of **`lambda.call()`**.     
   
 * For your base methods, try to use an **`R`** lambda with **`E`** whenever possible, such as **`Lambda.R[1-5]E`**. This is versitale and would allow you to add delegating methods of most flavours more easily. 
