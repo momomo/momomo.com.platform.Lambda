@@ -44,14 +44,14 @@ Are you easily **able** to keep track of them? Can your brain **parse** them qui
 Can you easily **convert** and/or go from one method to another?   
 
 With this ***intuitive*** **`interface`** based ***naming strategy*** you can use: 
-* **`Lambda.R`** &nbsp;&nbsp; for a **`return`** lambda with defined **`return`** type that takes **`0`** defined parameters. *Implements `Supplier<Return>`*
-* **`Lambda.R1`** &nbsp; for a **`return`** lambda with defined **`return`** type that takes **`1`** defined parameter. *Implements `Function<Param1, Return>`*.
-* **`Lambda.R2`** &nbsp; for a **`return`** lambda with defined **`return`** type that takes **`2`** defined parameter. *Implements `BiFunction<Param1, Param2, Return>`*.
+* **`Lambda.R`** &nbsp;&nbsp; for a **`return`** lambda with defined **`return`** type that takes **`0`** defined parameters. Implements **`Supplier<Return>`**.
+* **`Lambda.R1`** &nbsp; for a **`return`** lambda with defined **`return`** type that takes **`1`** defined parameter. Implements **`Function<Param1, Return>`**.
+* **`Lambda.R2`** &nbsp; for a **`return`** lambda with defined **`return`** type that takes **`2`** defined parameter. Implements **`BiFunction<Param1, Param2, Return>`**.
 * **`Lambda.R2E`**&nbsp; for a **`return`** lambda with defined **`return`** type that takes **`2`** defined parameters, *and* allows you to **define** the **thrown exception type** as well.
 * ...
-* **`Lambda.V`** &nbsp;&nbsp; for a **`void`** lambda that takes **`0`** defined parameters. *Implements `Runnable`*.
-* **`Lambda.V1`** &nbsp; for a **`void`** lambda that takes **`1`** defined parameter. *Implements `Consumer<Param1>`*.
-* **`Lambda.V2`** &nbsp; for a **`void`** lambda that takes **`2`** defined parameters. *Implements `BiConsumer<Param1>`*.
+* **`Lambda.V`** &nbsp;&nbsp; for a **`void`** lambda that takes **`0`** defined parameters. Implements **`Runnable`**.
+* **`Lambda.V1`** &nbsp; for a **`void`** lambda that takes **`1`** defined parameter. Implements **`Consumer<Param1>`**.
+* **`Lambda.V2`** &nbsp; for a **`void`** lambda that takes **`2`** defined parameters. Implements **`BiConsumer<Param1>`**.
 * **`Lambda.V2E`** for a **`void`** lambda that takes **`2`** defined parameters, *and* allows you to **define** the **thrown exception type** as well.
 * ...
 * Also take a look at less common use `varargs` based  
