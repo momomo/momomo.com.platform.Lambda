@@ -69,17 +69,17 @@ Documentation is provided through comments within the class itself and we recomm
 
 * Nice compact, partial view over signatures from Intellij over **[`Lambda.java`](src/momomo/com/Lambda.java)**: 
   
-  [![Lambda.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.signatures.2021.04.18.v1.jpg?raw=true)](src/momomo/com/Lambda.java)
+  [![Lambda.java](https://github.com/momomo/momomo.com.yz.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.signatures.2021.04.18.v1.jpg?raw=true)](src/momomo/com/Lambda.java)
 
 ### Examples   
 
 * ***[`examples/IO.java`](test/momomo/com/platform/Lambda/examples/IO.java)***
 
-  [![IO.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.04.07.V1.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
+  [![IO.java](https://github.com/momomo/momomo.com.yz.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.io.2021.04.07.V1.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/IO.java)
 
 * ***[`examples/Lists.java`](test/momomo/com/platform/Lambda/examples/Lists.java)***
 
-    [![Lists.java](https://github.com/momomo/momomo.com.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.04.07.V1.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
+    [![Lists.java](https://github.com/momomo/momomo.com.yz.github.statics/blob/master/momomo.com.platform.Lambda/graphics/example.lists.2021.04.07.V1.jpg?raw=true)](test/momomo/com/platform/Lambda/examples/Lists.java)
 
 ### Recommendation
 * Since a **`Lambda.V extends Lambda.VE<RuntimeException>`**, **`Lambda.R extends Lambda.RE<RuntimeException>`**, **`Lambda.V1<P1> extends Lambda.V1E<P1, RuntimeException>`** we recommend that you always try to use a **`throw`** capable Lambda for your declared methods which ultimately depends on intetions like if you want **`lambda.call()`** to **bubble** non **`RuntimeExceptions`** or if you want to force the handlement of **`exception`** inside the lambda body (think `Runnable` and `Thread`)? This way, you have the option to handle any exception in the Lambda body, as well as being able to simply throw it. 
